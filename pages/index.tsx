@@ -14,7 +14,7 @@ const xaxis = {
 }
 
 
-const lineOptions ={
+const countOptions ={
     colors: ['#ffda2e','#d5d5ff'],
     tooltip:{
         enabled: true,
@@ -40,7 +40,7 @@ const lineOptions ={
 }
 
 
-const lineSeries =[{
+const countSeries =[{
     name:'Sensor 1',
     data:[10, 2, 20, 4, 3, 60, 7, 80, 9, 1, 100]
 },{
@@ -98,7 +98,7 @@ export default function Home(){
             <br></br>
             <DatePicker />
 
-            <Chart options={lineOptions} series={lineSeries} type="line" height={350} />
+            <Chart options={countOptions} series={countSeries} type="line" height={350} />
 
             <Chart options={areaOptions} series={areaSeries} type="area"  height={350} />
 
