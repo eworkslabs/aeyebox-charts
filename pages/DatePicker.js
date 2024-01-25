@@ -15,7 +15,7 @@ const MyDatePicker = () => {
       selected={selectedDate}
       onChange={handleDateChange}
       dateFormat="MM/dd/yyyy"
-      showTimeSelect={false} // Desativa a seleção de horas
+      showTimeSelect={false} 
     />
   );
 };
