@@ -73,6 +73,7 @@ const stopsOptions ={
         offsetX: 8
     },
     xaxis
+    
 }
 
 const stopsSeries =[{
@@ -88,6 +89,7 @@ export default function Home(){
     return(
 
         <div>
+
             
             <form>
                 <label htmlFor="Sensor1">Sensor 1:</label>
@@ -106,7 +108,7 @@ export default function Home(){
                 </select>
             </form>
             <br></br>
-            <DatePicker />
+            <DatePicker  />
 
             <Chart options={countOptions} series={countSeries} type="line" height={350} />
 
