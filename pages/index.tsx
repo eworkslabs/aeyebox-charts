@@ -48,11 +48,16 @@ const countSeries =[{
     data:[15, 2, 11, 4, 3, 60, 7, 6, 9, 1, 89, 12, 89, 54, 67, 23, 17, 90, 32, 20, 54, 29, 10, 78]
 }]
 
-const areaOptions ={
-    xaxis,
+const speedOptions ={
+    subtitle: {
+        text:'Speed',
+        offsetY: 0,
+        offsetX: 8
+    },
+    xaxis
 }
 
-const areaSeries =[{
+const speedSeries =[{
     name:'Sensor 1',
     data:[10, 2, 20, 4, 3, 60, 7, 80, 9, 1, 100, 23, 65, 23, 9, 17, 34, 10, 80, 24, 21, 56, 39, 50]
 },{
@@ -61,11 +66,16 @@ const areaSeries =[{
 }]
 
 
-const columnOptions ={
+const stopsOptions ={
+    subtitle: {
+        text:'Stops',
+        offsetY: 0,
+        offsetX: 8
+    },
     xaxis
 }
 
-const columnSeries =[{
+const stopsSeries =[{
     name:'Sensor 1',
     data: [10, 2, 20, 4, 3, 60, 7, 80, 9, 1, 100, 23, 65, 23, 9, 17, 34, 10, 80, 24, 21, 56, 39, 50],
 },{
@@ -100,9 +110,9 @@ export default function Home(){
 
             <Chart options={countOptions} series={countSeries} type="line" height={350} />
 
-            <Chart options={areaOptions} series={areaSeries} type="area"  height={350} />
+            <Chart options={speedOptions} series={speedSeries} type="area"  height={350} />
 
-            <Chart options={columnOptions} series={columnSeries} type="bar" height={350} />
+            <Chart options={stopsOptions} series={stopsSeries} type="bar" height={350} />
             
         </div>
     )
