@@ -92,14 +92,14 @@ const stopsSeries =[{
 
 
     const ProductionLineData = {
-        title: 'Production Line W3-Prod69-L7',
+        title: '',
         productionLine: 'W3 - Prod69 - L7',
         series3: 'Filler',
         series4: 'Labelizer',
         xPerMinute: 31,
         date: 'Thursday, 31 Aug 2023',
         counts:{
-            counts: 367,
+            counts: 60,
             low: 11 * 60,
             high: 16 * 60,
         },
@@ -114,6 +114,7 @@ export default function Home(){
 
     
         <div>
+            <div className="pagesline">
             <div className="panel1">
                 <form>
                     <label htmlFor="Sensor 1">Sensor 1</label>
@@ -124,12 +125,13 @@ export default function Home(){
                     </select>
                 </form>
             </div>
-            <br></br>
-            <div>
-                <ProductionLine data={ProductionLineData}  /> 
-            </div>
+      
             
+                <ProductionLine data={ProductionLineData}  /> 
 
+            </div>  
+
+            <div className="pagesline">
             <div className="panel2">
                 <form>
                     <label htmlFor="Sensor 1">Sensor 2</label>
@@ -138,15 +140,18 @@ export default function Home(){
                         <option value="option2">Option 2</option>
                         <option value="option3">Option 3</option>
                     </select>
-                    <div>
-                        <ProductionLine data={ProductionLineData} />
-                    </div>
                 </form>
-
             </div>
 
-            <br></br>
+            <ProductionLine data={ProductionLineData} />
+               
+
+            </div>
+            <div className="calendar">
             <DatePicker />
+            </div>
+          
+           
             <br></br>
             <br></br>
 

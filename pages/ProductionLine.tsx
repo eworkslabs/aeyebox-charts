@@ -8,13 +8,13 @@ interface ProductionLineProps {
     series4: string;
     xPerMinute: number;
     date: string;
+    lost: number;
+    stops: number;
     counts: {
       counts: number;
       low: number;
       high: number;
     };
-    lost: number;
-    stops: number;
   };
 }
 
@@ -22,20 +22,17 @@ const ProductionLine: React.FC<ProductionLineProps> = ({ data }) => {
   const formatCounts = (counts: { low: number; high: number }): string => {
     const lowPerMinute = counts.low / 60;
     const highPerMinute = counts.high / 60;
-    return `${counts.counts} Counts: ${counts.low} Low/m, ${counts.high} High/m - ${lowPerMinute} Low/s, ${highPerMinute} High/s`;
+    return  `${data.counts.counts} Counts: ${counts.low} Low/m: - ${counts.high} High/m: - ${lowPerMinute} Low/s: - ${highPerMinute} High/s: - `; 
   };
 
   return (
-    <div>
-      <h2>{data.title}</h2>
+    <>
       <p>
-        {data.xPerMinute} x/minute <br />
-        {data.date} <br />
-        {formatCounts(data.counts)} <br />
-        Lost: {data.lost} <br />
-        Stops: {data.stops} <br />
+        {formatCounts(data.counts)}
+        Lost: {data.lost} -
+        Stops: {data.stops}
       </p>
-    </div>
+    </>   
   );
 };
 
