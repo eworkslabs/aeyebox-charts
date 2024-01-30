@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const MyDatePicker = () => {
+export default function MyDatePicker() {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = (date) => {
@@ -19,5 +19,3 @@ const MyDatePicker = () => {
     />
   );
 };
-
-export default MyDatePicker;

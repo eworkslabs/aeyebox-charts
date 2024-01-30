@@ -7,6 +7,7 @@ import ProductionLine from "@/pages/ProductionLine"
 interface HomePageProps{}
 
 
+console.log(DatePicker)
 const Chart = dynamic(()=> import ('react-apexcharts'),{
     ssr: false
 })
@@ -115,45 +116,37 @@ export default function Home(){
     
         <div>
             <div className="pagesline">
-            <div className="panel1">
-                <form>
-                    <label htmlFor="Sensor 1">Sensor 1</label>
-                    <select id="dropdown1">
-                        <option value="option1">Option 1</option>
-                        <option value="option2">Option 2</option>
-                        <option value="option3">Option 3</option>
-                    </select>
-                </form>
-            </div>
-      
-            
-                <ProductionLine data={ProductionLineData}  /> 
+                <div className="panel1">
+                    <form>
+                        <label htmlFor="Sensor 1">Sensor 1</label>
+                        <select id="dropdown1">
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
+                        </select>
+                    </form>
+                    <ProductionLine data={ProductionLineData}  /> 
+                </div>
 
+                <br></br>
+                <div className="panel2">
+                    <form>
+                        <label htmlFor="Sensor 1">Sensor 2</label>
+                        <select id="dropdown2">
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
+                        </select>
+                    </form>
+                    <ProductionLine data={ProductionLineData} />
+                </div>
+                <div className="calendar">
+                    <DatePicker/>
+                </div>
             </div>  
-
-            <div className="pagesline">
-            <div className="panel2">
-                <form>
-                    <label htmlFor="Sensor 1">Sensor 2</label>
-                    <select id="dropdown2">
-                        <option value="option1">Option 1</option>
-                        <option value="option2">Option 2</option>
-                        <option value="option3">Option 3</option>
-                    </select>
-                </form>
-            </div>
-
-            <ProductionLine data={ProductionLineData} />
-               
-
-            </div>
-            <div className="calendar">
-            <DatePicker />
-            </div>
           
            
-            <br></br>
-            <br></br>
+    
 
             <Chart options={countOptions} series={countSeries} type="line" height={350} />
             <Chart options={speedOptions} series={speedSeries} type="area" height={350} />
