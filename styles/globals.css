@@ -1,5 +1,42 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.pagesline {
+  position: relative;
+  display: grid;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-top: 0.8rem;
+}
+
+.pagesline .panel1 {
+  display: flex;
+  margin-left: 1.2rem;
+}
+
+.pagesline .panel2 {
+  display: flex;
+  margin-left: 1.2rem;
+}
+
+.calendar input {
+  outline: none; 
+
+  margin-top: 1.6rem;
+  margin-left: 1.3rem;
+}

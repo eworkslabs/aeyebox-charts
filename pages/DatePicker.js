@@ -1,14 +1,21 @@
-import React, {useState} from "react"
-import Datetime from "react-datetime"
-import "react-datetime/css/react-datetime.css";
+// Seu componente React
+import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
+export default function MyDatePicker() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
 
-export default function DatePicker(){
-    return (
-        <>
-        <p>this is test</p>
-        <Datetime value={new Date()} input={true} className="appearance-none shadow border rounded py-3 px-2 text-gray-darker "/>
-        </>
-    )
-}
+  return (
+    <DatePicker
+      selected={selectedDate}
+      onChange={handleDateChange}
+      dateFormat="MM/dd/yyyy"
+      showTimeSelect={false} 
+    />
+  );
+};
