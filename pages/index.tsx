@@ -173,7 +173,7 @@ export default function Home(){
 
       <div className="Charts">
         <Chart options={countOptions} series={countSeries} type="line" height={350} width={1500} />
-        <Chart options={speedOptions} series={speedSeries} type="line" height={350} width={1500} />
+        <Chart options={speedOptions} series={speedSeries} type="area" height={350} width={1500} />
         <Chart options={stopsOptions} series={stopsSeries} type="bar" height={350} width={1500} />
       </div>
 
