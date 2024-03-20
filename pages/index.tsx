@@ -112,46 +112,74 @@ const stopsSeries =[{
 
 export default function Home(){
     return(
-
     
-        <div>
-            <div className="pagesline">
-                <div className="panel1">
-                    <form>
-                        <label htmlFor="Sensor 1">Sensor 1</label>
-                        <select id="dropdown1">
-                            <option value="option1">Option 1</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
-                        </select>
-                    </form>
-                    <ProductionLine data={ProductionLineData}  /> 
-                </div>
-
-                <br></br>
-                <div className="panel2">
-                    <form>
-                        <label htmlFor="Sensor 1">Sensor 2</label>
-                        <select id="dropdown2">
-                            <option value="option1">Option 1</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
-                        </select>
-                    </form>
-                    <ProductionLine data={ProductionLineData} />
-                </div>
-                <div className="calendar">
-                    <DatePicker/>
-                </div>
-            </div>  
-          
-           
-    
-
-            <Chart options={countOptions} series={countSeries} type="line" height={350} />
-            <Chart options={speedOptions} series={speedSeries} type="area" height={350} />
-            <Chart options={stopsOptions} series={stopsSeries} type="bar" height={350} /> 
+    <div className="flex flex-col space-y-6">
+    <div className="flex items-center space-x-4">
+      <h2 className="text-lg font-semibold mt-5 mx-5">SENSOR 1</h2>
+      <select className="mt-5" id="dropdown1">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+      </select>
+      <div className="flex space-x-2 mt-5">
+        <div className="flex flex-col justify-center p-4 w-64 bg-[#c5e0f4] rounded">
+          <span className="text-left text-xl font-medium ">COUNT/S:</span>
+          <span className="text-center text-2xl font-semibold ">367</span>
         </div>
-    )
+        <div className="flex flex-col justify-center p-4 w-64 bg-[#c5e0f4] rounded">
+          <span className="text-left text-xl font-medium">LOW/S:</span>
+          <span className="text-center text-2xl font-semibold">11</span>
+        </div>
+        <div className="flex flex-col justify-center p-4 w-64 bg-[#c5e0f4] rounded">
+          <span className="text-left text-xl font-medium">HIGH/S:</span>
+          <span className="text-center text-2xl font-semibold">18</span>
+        </div>
+        <div className="flex flex-col justify-center p-4 w-64 bg-[#c5e0f4] rounded">
+          <span className="text-left text-xl font-medium">STOP/S:</span>
+          <span className="text-center text-2xl font-semibold">45</span>
+        </div>
+      </div>
+    </div>
+    <div className="flex items-center space-x-4">
+      <h2 className="text-lg font-semibold mx-5">SENSOR 2</h2>
+      <select id="dropdown2">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+      </select>
+      <div className="flex space-x-2">
+        <div className="flex flex-col justify-center p-4 w-64 bg-[#b7e1a1] rounded">
+          <span className="text-left text-xl font-medium">COUNT/S:</span>
+          <span className="text-center text-2xl font-semibold">361</span>
+        </div>
+        <div className="flex flex-col justify-center p-4 w-64 bg-[#b7e1a1] rounded">
+          <span className="text-left text-xl font-medium">LOW/S:</span>
+          <span className="text-center text-2xl font-semibold">9</span>
+        </div>
+        <div className="flex flex-col  justify-center p-4 w-64 bg-[#b7e1a1] rounded">
+          <span className="text-left text-xl font-medium">HIGH/S:</span>
+          <span className="text-center text-2xl font-semibold">16</span>
+        </div>
+        <div className="flex flex-col justify-center p-4 w-64 bg-[#b7e1a1] rounded">
+          <span className="text-left text-xl font-medium">STOP/S:</span>
+          <span className="text-center text-2xl font-semibold">46</span>
+        </div>
+      </div>
+    </div>
+
+    <div className="Calendar mx-5">
+        <DatePicker />
+    </div>
+
+      <div className="Charts">
+        <Chart options={countOptions} series={countSeries} type="line" height={350} width={1500} />
+        <Chart options={speedOptions} series={speedSeries} type="area" height={350} width={1500} />
+        <Chart options={stopsOptions} series={stopsSeries} type="bar" height={350} width={1500} />
+      </div>
+
+  </div>
+
+
+)
 }
 
