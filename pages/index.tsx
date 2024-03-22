@@ -110,7 +110,12 @@ const stopsSeries =[{
     };
 
 
-export default function Home(){
+export default async function Home(){
+
+  const data = await fetch('http://localhost:3000/api/series')
+
+  const series = await data.json()
+  console.log(series)
     return(
     
     <div className="flex flex-col space-y-6">
@@ -172,9 +177,9 @@ export default function Home(){
     </div>
 
       <div className="Charts">
-        <Chart options={countOptions} series={countSeries} type="line" height={350} width={1500} />
-        <Chart options={speedOptions} series={speedSeries} type="area" height={350} width={1500} />
-        <Chart options={stopsOptions} series={stopsSeries} type="bar" height={350} width={1500} />
+        <Chart options={countOptions} series={series[0]} type="line" height={350} width={1500} />
+        <Chart options={speedOptions} series={series[1]} type="area" height={350} width={1500} />
+        <Chart options={stopsOptions} series={series[2]} type="bar" height={350} width={1500} />
       </div>
 
   </div>
