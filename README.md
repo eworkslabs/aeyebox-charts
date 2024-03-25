@@ -38,3 +38,16 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## API Endpoints
+
+```
+GET /api/companies
+GET /api/locations/<COMPANY_ID>
+GET /api/plants/<LOCATION_ID>
+GET /api/lines/<PLANT_ID>
+GET /api/machines/<LINE_ID>
+GET /api/telemetry/<MACHINE_IDS>
+```
+
+MACHINE_IDS = 1111,1112,1113
