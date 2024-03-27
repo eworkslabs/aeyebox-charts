@@ -17,7 +17,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/series').then((response) => response.json()).then((data) => {
+    fetch('http://localhost:3000/api/series').then((response) => response.json()).then((data) => {
       setSeries(data);
       console.log('fetched series', series);
     })
@@ -135,25 +135,33 @@ export default function Home() {
           <option value="option2">Option 2</option>
           <option value="option3">Option 3</option>
         </select>
+
         <div className="flex space-x-2 mt-5">
+
           <div className="flex flex-col justify-center p-4 w-64 bg-[#c5e0f4] rounded">
             <span className="text-left text-xl font-medium ">COUNT/S:</span>
             <span className="text-center text-2xl font-semibold ">367</span>
           </div>
+
           <div className="flex flex-col justify-center p-4 w-64 bg-[#c5e0f4] rounded">
             <span className="text-left text-xl font-medium">LOW/S:</span>
             <span className="text-center text-2xl font-semibold">11</span>
           </div>
+          
           <div className="flex flex-col justify-center p-4 w-64 bg-[#c5e0f4] rounded">
             <span className="text-left text-xl font-medium">HIGH/S:</span>
             <span className="text-center text-2xl font-semibold">18</span>
           </div>
+
           <div className="flex flex-col justify-center p-4 w-64 bg-[#c5e0f4] rounded">
             <span className="text-left text-xl font-medium">STOP/S:</span>
             <span className="text-center text-2xl font-semibold">45</span>
           </div>
+
         </div>
+
       </div>
+
       <div className="flex items-center space-x-4">
         <h2 className="text-lg font-semibold mx-5">SENSOR 2</h2>
         <select id="dropdown2">
@@ -161,24 +169,30 @@ export default function Home() {
           <option value="option2">Option 2</option>
           <option value="option3">Option 3</option>
         </select>
+
         <div className="flex space-x-2">
           <div className="flex flex-col justify-center p-4 w-64 bg-[#b7e1a1] rounded">
             <span className="text-left text-xl font-medium">COUNT/S:</span>
             <span className="text-center text-2xl font-semibold">361</span>
           </div>
+
           <div className="flex flex-col justify-center p-4 w-64 bg-[#b7e1a1] rounded">
             <span className="text-left text-xl font-medium">LOW/S:</span>
             <span className="text-center text-2xl font-semibold">9</span>
           </div>
+
           <div className="flex flex-col  justify-center p-4 w-64 bg-[#b7e1a1] rounded">
             <span className="text-left text-xl font-medium">HIGH/S:</span>
             <span className="text-center text-2xl font-semibold">16</span>
           </div>
+
           <div className="flex flex-col justify-center p-4 w-64 bg-[#b7e1a1] rounded">
             <span className="text-left text-xl font-medium">STOP/S:</span>
             <span className="text-center text-2xl font-semibold">46</span>
           </div>
+
         </div>
+        
       </div>
 
       <div className="Calendar mx-5">
