@@ -9,5 +9,7 @@ export default function handler(
   res: NextApiResponse<[]>,
 ) {
 
+console.log(_req.query)
+
   res.status(200).json(companies);
 }
