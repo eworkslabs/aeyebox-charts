@@ -4,11 +4,6 @@ export type Todos = {
     completed?: string
 }
 
-export type Series = {
-    name?: string;
-    data: any;
-}
-
 export type Companies = {
     id: number;
     name?: string
@@ -35,5 +30,21 @@ export type Plants = {
 }
 
 export type Telemetry = {
-    
-}
+    name: string;
+    kpis: Kpis;
+    series: Series;
+  };
+  
+  export type Kpis = {
+    counts: number;
+    lows: number;
+    highs: number;
+    stops: number;
+  };
+  
+  export type Series = {
+    speed: number[];
+    count: number[];
+    stops: number[];
+  };
+  
