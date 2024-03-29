@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import DatePicker from "./DatePicker"
 import ProductionLine from "@/pages/ProductionLine"
 import { useEffect, useState } from "react";
+import { Companies } from "@/interfaces";
 
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false
@@ -41,6 +42,34 @@ export default function Home() {
     fetchData();
   },[]);
 
+
+  
+  function SelectOptions() {
+    const [options, setOptions] = useState<Companies[]>([]);
+  
+    useEffect(() => {
+      fetch('http://localhost:3000/api/companies')
+        .then(response => response.json())
+        .then((data: Companies[]) => setOptions(data))
+        .catch(error => console.error('Erro ao buscar dados:', error));
+    }, []);
+  
+    return (
+      <div>
+        <h1>Company</h1>
+        <select>
+        {options.map(option => (
+          <option key={option.id} value={option.name}>
+            {option.name}
+          </option>
+        ))}
+      </select>
+      </div>
+      
+    );
+  }
+  
+  
 
 
   const xaxis = {
@@ -142,15 +171,10 @@ export default function Home() {
 
   return (
     <div>
-      
+      <SelectOptions />
       <div className="flex flex-col space-y-6">
       <div className="flex items-center space-x-4">
         <h2 className="text-lg font-semibold mt-5 mx-5">SENSOR 1</h2>
-        <select className="mt-5" id="dropdown1">
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-        </select>
 
         <div className="flex space-x-2 mt-5">
 
@@ -180,12 +204,6 @@ export default function Home() {
 
       <div className="flex items-center space-x-4">
         <h2 className="text-lg font-semibold mx-5">SENSOR 2</h2>
-        <select id="dropdown2">
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-        </select>
-
         <div className="flex space-x-2">
           <div className="flex flex-col justify-center p-4 w-64 bg-[#b7e1a1] rounded">
             <span className="text-left text-xl font-medium">COUNT/S:</span>
