@@ -1,23 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import  fs  from 'fs';
-//import type { Todos } from "../../interfaces";
-import Machine from '../../data/machines/1111.json';
-import MachineTwo from '../../data/machines/2111.json';
-import MachineThree from '../../data/machines/3111.json';
+
+
+
 
 export default function handler(
   _req: NextApiRequest,
-  res: NextApiResponse<any[]>,
+  res: NextApiResponse<[]>,
 ) {
 
 
 
-if(
-  _req.query.company === undefined
-)
+const file = fs.readFileSync(  __dirname + '/../../../../data/machines/' + _req.query.lines + '.json', 'utf8');
+  const data = JSON.parse(file);
 
-  res.status(200).json([...Machine,...MachineTwo,...MachineThree]);
+  res.status(200).json(data);
 }
-
-
-

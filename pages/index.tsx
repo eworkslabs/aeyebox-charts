@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import DatePicker from "./DatePicker"
 import ProductionLine from "@/pages/ProductionLine"
 import { useEffect, useState } from "react";
-import { Companies } from "@/interfaces";
+import { Companies, Locations } from "@/interfaces";
 
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false
@@ -32,42 +32,71 @@ export default function Home() {
   }, [series])
 
 
-  const [options, setOptions] = useState([])
-  useEffect(()=>{
-    async function fetchData () {
-      const response = await fetch('http://localhost:3000/api/machines');
-      const jsonData = await response.json();
-      setOptions(jsonData.options)
-    }
-    fetchData();
-  },[]);
 
 
   
-  function SelectOptions() {
-    const [options, setOptions] = useState<Companies[]>([]);
+  function Selects() {
+    const [companies, setCompanies] = useState<Companies[]>([]);
+    const [locations, setLocations] = useState<Locations[]>([]);
+    const [selectedCompany, setSelectedCompany] = useState<number | null>(null);
   
     useEffect(() => {
-      fetch('http://localhost:3000/api/companies')
-        .then(response => response.json())
-        .then((data: Companies[]) => setOptions(data))
-        .catch(error => console.error('Erro ao buscar dados:', error));
+      fetchCompanies();
     }, []);
+  
+    const fetchCompanies = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/companies');
+        const data = await response.json();
+        setCompanies(data);
+      } catch (error) {
+        console.error('Error fetching companies:', error);
+      }
+    };
+  
+    const fetchLocations = async (companyId: number) => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/locations?company=${companyId}`);
+        const data = await response.json();
+        setLocations(data);
+      } catch (error) {
+        console.error('Error fetching locations:', error);
+      }
+    };
+  
+    const handleCompanyChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      const companyId = parseInt(event.target.value);
+      setSelectedCompany(companyId);
+      fetchLocations(companyId);
+    };
   
     return (
       <div>
-        <h1>Company</h1>
-        <select>
-        {options.map(option => (
-          <option key={option.id} value={option.name}>
-            {option.name}
-          </option>
-        ))}
-      </select>
+        <label htmlFor="companySelect">Select Company:</label>
+        <select id="companySelect" onChange={handleCompanyChange}>
+          <option value="">Select...</option>
+          {companies.map(company => (
+            <option key={company.id} value={company.id}>{company.name}</option>
+          ))}
+        </select>
+  
+        <label className="ml-5" htmlFor="locationSelect">Select Location:</label>
+        <select id="locationSelect" disabled={!selectedCompany}>
+          <option value="">Select...</option>
+          {locations.map(location => (
+            <option key={location.id} value={location.id}>{location.name}</option>
+          ))}
+        </select>
+
+        <label htmlFor=""></label>
       </div>
-      
     );
   }
+  
+
+  
+
+    
   
   
 
@@ -171,13 +200,14 @@ export default function Home() {
 
   return (
     <div>
-      <SelectOptions />
+      <div className="mt-5 mx-5">
+      <Selects/>
+      </div>
       <div className="flex flex-col space-y-6">
       <div className="flex items-center space-x-4">
         <h2 className="text-lg font-semibold mt-5 mx-5">SENSOR 1</h2>
 
         <div className="flex space-x-2 mt-5">
-
           <div className="flex flex-col justify-center p-4 w-64 bg-[#c5e0f4] rounded">
             <span className="text-left text-xl font-medium ">COUNT/S:</span>
             <span className="text-center text-2xl font-semibold ">367</span>
@@ -245,4 +275,3 @@ export default function Home() {
     </div>
   )
 }
-
