@@ -30,6 +30,19 @@ export default function Home() {
     }
   }, [series])
 
+
+  const [options, setOptions] = useState([])
+  useEffect(()=>{
+    async function fetchData () {
+      const response = await fetch('http://localhost:3000/api/machines');
+      const jsonData = await response.json();
+      setOptions(jsonData.options)
+    }
+    fetchData();
+  },[]);
+
+
+
   const xaxis = {
     categories: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
   }
@@ -125,9 +138,12 @@ export default function Home() {
 
   };
 
-  return (
 
-    <div className="flex flex-col space-y-6">
+
+  return (
+    <div>
+      
+      <div className="flex flex-col space-y-6">
       <div className="flex items-center space-x-4">
         <h2 className="text-lg font-semibold mt-5 mx-5">SENSOR 1</h2>
         <select className="mt-5" id="dropdown1">
@@ -208,8 +224,7 @@ export default function Home() {
       </div>
 
     </div>
-
-
+    </div>
   )
 }
 

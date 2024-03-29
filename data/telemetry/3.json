@@ -1,6 +1,7 @@
 [
     {
         "name": "Sensor 1",
+        "idvalue": 3,
         "kpis": {
             "counts": 123,
             "lows": 345,
@@ -15,6 +16,7 @@
     },
     {
         "name": "Sensor 2",
+        "idvalue": 3,
         "kpis": {
             "counts": 123,
             "lows": 345,
@@ -29,6 +31,7 @@
     },
     {
         "name": "Sensor 3",
+        "idvalue": 3,
         "kpis": {
             "counts": 123,
             "lows": 345,

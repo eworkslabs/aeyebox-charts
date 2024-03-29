@@ -1,6 +1,7 @@
 [
     {
         "name": "Sensor 1",
+        "idvalue": 1,
         "kpis": {
             "counts": 123,
             "lows": 345,

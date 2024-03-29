@@ -6,26 +6,31 @@ export type Todos = {
 
 export type Companies = {
     id: number;
+    companyid: number;
     name?: string
 }
 
 export type Lines = {
     id:number;
+    companyid: number;
     name?: string
 }
 
 export type Locations = {
     id:number;
+    companyid: number;
     name?: string
 }
 
 export type Machines = {
     id:number;
+    companyid: number;
     name?: string
 }
 
 export type Plants = {
     id:number;
+    companyid: number;
     name?: string
 }
 
@@ -33,6 +38,7 @@ export type Telemetry = {
     name: string;
     kpis: Kpis;
     series: Series;
+    idvalue: number
   };
   
   export type Kpis = {

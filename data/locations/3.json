@@ -1,14 +1,17 @@
 [
     {
         "id": 31,
+        "companyid": 3,
         "name": "Sao Paulo"
     },
     {
         "id": 32,
+        "companyid": 3,
         "name": "Curitiba"
     },
     {
         "id": 33,
+        "companyid": 3,
         "name": "Rio de Janeiro"
     }
 ]
