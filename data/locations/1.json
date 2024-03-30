@@ -1,17 +1,14 @@
 [
     {
         "id": 11,
-        "companyid": 1,
         "name": "San Francisco"
     },
     {
         "id": 12,
-        "companyid": 1,
         "name": "New York"
     },
     {
         "id": 13,
-        "companyid": 1,
         "name": "Los Angeles"
     }
 ]

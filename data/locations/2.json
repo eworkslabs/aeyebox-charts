@@ -1,17 +1,14 @@
 [
     {
         "id": 21,
-        "companyid": 2,
         "name": "Munich"
     },
     {
         "id": 22,
-        "companyid": 2,
         "name": "Berlin"
     },
     {
         "id": 23,
-        "companyid": 2,
         "name": "Frankfurt"
     }
 ]

@@ -1,17 +1,14 @@
 [
     {
         "id": 311,
-        "companyid": 3,
         "name": "SPO-1"
     },
     {
         "id": 312,
-        "companyid": 3,
         "name": "SPO-2"
     },
     {
         "id": 313,
-        "companyid": 3,
         "name": "SPO-3"
     }
 ]
