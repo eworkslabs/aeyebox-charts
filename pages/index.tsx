@@ -139,9 +139,9 @@ export default function Home() {
 
     return (
       <div>
-        <div className="flex items-center mt-4">
+        <div className="flex items-center mt-2">
         <label htmlFor="companySelect">Select Company:</label>
-        <select id="companySelect" onChange={handleCompanyChange}>
+        <select className="w-32" id="companySelect" onChange={handleCompanyChange}>
           <option value="">Select...</option>
           {companies.map(company => (
             <option key={company.id} value={company.id}>{company.name}</option>
@@ -149,15 +149,15 @@ export default function Home() {
         </select>
   
         <label className="ml-5" htmlFor="locationSelect">Select Location:</label>
-        <select id="locationSelect" onChange={handleLocationsChange} disabled={!selectedCompany}>
+        <select className="w-32" id="locationSelect" onChange={handleLocationsChange} disabled={!selectedCompany}>
           <option value="">Select...</option>
           {locations.map(location => (
             <option key={location.id} value={location.id}>{location.name}</option>
           ))}
         </select>
 
-        <label className="ml-5" htmlFor="plantsSelect">Select Plant:</label>
-        <select id="plantSelect" onChange={handlePlantsChange} disabled={!selectedLocations}>
+        <label className="ml-5 " htmlFor="plantsSelect">Select Plant:</label>
+        <select className="w-32" id="plantSelect" onChange={handlePlantsChange} disabled={!selectedLocations}>
           <option value="">Select...</option>
           {plants.map(plant => (
             <option key={plant.id} value={plant.id}>{plant.name}</option>
@@ -165,7 +165,7 @@ export default function Home() {
         </select>
 
         <label className="ml-5" htmlFor="linesSelect">Select Lines:</label>
-        <select id="lineSelect" onChange={handleLinesChange} disabled={!selectedPlants}>
+        <select className="w-32" id="lineSelect" onChange={handleLinesChange} disabled={!selectedPlants}>
           <option value="">Select...</option>
           {lines.map(line => (
             <option key={line.id} value={line.id}>{line.name}</option>
@@ -174,7 +174,7 @@ export default function Home() {
 
        
         <label className="ml-5" htmlFor="machinesSelect">Select Machines:</label>
-        <Select className="w-[482px] h-8 ml-5" isDisabled={!selectedLines}  id="machinesSelect"
+        <Select className="w-[320px] h-8 ml-5" isDisabled={!selectedLines}  id="machinesSelect"
         options={machines}
         onChange={handleMachineChange}
         value={machines.find((machine) => machine.value === selectedMachine)} isMulti/>
