@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import DatePicker from "./DatePicker"
 import ProductionLine from "@/pages/ProductionLine"
 import { useEffect, useState } from "react";
-import { Companies, Locations, Plants } from "@/interfaces";
+import { Companies, Locations, Plants, Lines } from "@/interfaces";
 
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false
@@ -39,8 +39,10 @@ export default function Home() {
     const [companies, setCompanies] = useState<Companies[]>([]);
     const [locations, setLocations] = useState<Locations[]>([]);
     const [plants, setPlants] = useState<Plants[]>([]);
+    const [lines, setLines] = useState<Lines[]>([])
     const [selectedCompany, setSelectedCompany] = useState<number | null>(null);
-    const [selectedLocations, setSelectedLocations] = useState<number | null>(null)
+    const [selectedLocations, setSelectedLocations] = useState<number | null>(null);
+    const [selectedPlants, setSelectedPlants] = useState<number | null>(null);
   
   
   
@@ -76,6 +78,16 @@ export default function Home() {
       } catch (error) {
         console.error('Error fetching Plants')
       }
+    };
+
+    const fetchLines = async (plantId: number) => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/lines?plants=${plantId}`);
+        const data = await response.json();
+        setLines(data);
+      } catch (error) {
+        console.error('Erro fetching Lines')
+      }
     }
 
 
@@ -90,8 +102,14 @@ export default function Home() {
     const handleLocationsChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
       const locationId = parseInt(event.target.value);
       setSelectedLocations(locationId);
-      fetchPlants(locationId)
-    }
+      fetchPlants(locationId);
+    };
+
+    const handlePlantsChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      const plantId = parseInt(event.target.value);
+      setSelectedPlants(plantId);
+      fetchLines(plantId);
+    };
 
     
     
@@ -115,10 +133,18 @@ export default function Home() {
         </select>
 
         <label className="ml-5" htmlFor="plantsSelect">Select Plant:</label>
-        <select id="plantSelect" disabled={!selectedLocations}>
+        <select id="plantSelect" onChange={handlePlantsChange} disabled={!selectedLocations}>
           <option value="">Select...</option>
           {plants.map(plant => (
             <option key={plant.id} value={plant.id}>{plant.name}</option>
+          ))}
+        </select>
+
+        <label className="ml-5" htmlFor="linesSelect">Select Lines</label>
+        <select id="lineSelect" disabled={!selectedPlants}>
+          <option value="">Select...</option>
+          {lines.map(line => (
+            <option key={line.id} value={line.id}>{line.name}</option>
           ))}
         </select>
         
