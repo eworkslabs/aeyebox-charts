@@ -3,14 +3,17 @@ import styles from "/styles/Home.module.css";
 import dynamic from "next/dynamic";
 import DatePicker from "./DatePicker"
 import ProductionLine from "@/pages/ProductionLine"
-import { useEffect, useState } from "react";
-import { Companies, Locations, Plants, Lines } from "@/interfaces";
+import React, { useEffect, useState } from "react";
+import { Companies, Locations, Plants, Lines, Machines, Telemetry } from "@/interfaces";
+import Select from "react-select";
+
+
 
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false
 })
 
-interface HomePageProps { }
+interface HomePageProps {}
 
 export default function Home() {
 
@@ -39,12 +42,14 @@ export default function Home() {
     const [companies, setCompanies] = useState<Companies[]>([]);
     const [locations, setLocations] = useState<Locations[]>([]);
     const [plants, setPlants] = useState<Plants[]>([]);
-    const [lines, setLines] = useState<Lines[]>([])
+    const [lines, setLines] = useState<Lines[]>([]);
+    const [machines, setMachines] = useState<{ value: number; label: string }[]>([]);
     const [selectedCompany, setSelectedCompany] = useState<number | null>(null);
     const [selectedLocations, setSelectedLocations] = useState<number | null>(null);
     const [selectedPlants, setSelectedPlants] = useState<number | null>(null);
-  
-  
+    const [selectedLines, setSelectedLines] = useState<number | null>(null);
+    const [selectedMachine, setSelectedMachine] = useState<number | null>(null);
+    
   
     useEffect(() => {
       fetchCompanies();
@@ -86,12 +91,23 @@ export default function Home() {
         const data = await response.json();
         setLines(data);
       } catch (error) {
-        console.error('Erro fetching Lines')
+        console.error('Error fetching Lines')
+      }
+    };
+
+    const fetchMachines = async (lineId: number) => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/machines?lines=${lineId}`);
+        const data: Machines[] = await response.json();
+        const machineOptions = data.map((machine)=> ({
+          value: machine.id,
+          label: machine.name
+        }));
+        setMachines(machineOptions)
+      } catch (error) {
+        console.error('Erro fetching Machines')
       }
     }
-
-
-
   
     const handleCompanyChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
       const companyId = parseInt(event.target.value);
@@ -111,11 +127,19 @@ export default function Home() {
       fetchLines(plantId);
     };
 
-    
-    
-  
+    const handleLinesChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      const lineId = parseInt(event.target.value);
+      setSelectedLines(lineId)
+      fetchMachines(lineId)
+    };
+
+    const handleMachineChange = (selectedOption: any) => {
+      setSelectedMachine(selectedOption.value);
+    };
+
     return (
       <div>
+        <div className="flex items-center mt-4">
         <label htmlFor="companySelect">Select Company:</label>
         <select id="companySelect" onChange={handleCompanyChange}>
           <option value="">Select...</option>
@@ -140,28 +164,28 @@ export default function Home() {
           ))}
         </select>
 
-        <label className="ml-5" htmlFor="linesSelect">Select Lines</label>
-        <select id="lineSelect" disabled={!selectedPlants}>
+        <label className="ml-5" htmlFor="linesSelect">Select Lines:</label>
+        <select id="lineSelect" onChange={handleLinesChange} disabled={!selectedPlants}>
           <option value="">Select...</option>
           {lines.map(line => (
             <option key={line.id} value={line.id}>{line.name}</option>
           ))}
         </select>
-        
+
+       
+        <label className="ml-5" htmlFor="machinesSelect">Select Machines:</label>
+        <Select className="w-[482px] h-8 ml-5" isDisabled={!selectedLines}  id="machinesSelect"
+        options={machines}
+        onChange={handleMachineChange}
+        value={machines.find((machine) => machine.value === selectedMachine)} isMulti/>
+        </div>
+     
       </div>
       
       
     );
   }
   
-
-  
-
-    
-  
-  
-
-
   const xaxis = {
     categories: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
   }
@@ -268,19 +292,19 @@ export default function Home() {
       <div className="flex items-center space-x-4">
         <h2 className="text-lg font-semibold mt-5 mx-5">SENSOR 1</h2>
         <div className="flex space-x-2 mt-5">
-          <div className="flex flex-col justify-center p-4 w-64 bg-[#c5e0f4] rounded">
+          <div className="flex flex-col justify-center p-4 w-[330px] bg-[#c5e0f4] rounded">
             <span className="text-left text-xl font-medium ">COUNT/S:</span>
             <span className="text-center text-2xl font-semibold ">0</span>
           </div>
-          <div className="flex flex-col justify-center p-4 w-64 bg-[#c5e0f4] rounded">
+          <div className="flex flex-col justify-center p-4 w-[330px] bg-[#c5e0f4] rounded">
             <span className="text-left text-xl font-medium">LOW/S:</span>
             <span className="text-center text-2xl font-semibold">0</span>
           </div>
-          <div className="flex flex-col justify-center p-4 w-64 bg-[#c5e0f4] rounded">
+          <div className="flex flex-col justify-center p-4 w-[330px] bg-[#c5e0f4] rounded">
             <span className="text-left text-xl font-medium">HIGH/S:</span>
             <span className="text-center text-2xl font-semibold">0</span>
           </div>
-          <div className="flex flex-col justify-center p-4 w-64 bg-[#c5e0f4] rounded">
+          <div className="flex flex-col justify-center p-4 w-[330px] bg-[#c5e0f4] rounded">
             <span className="text-left text-xl font-medium">STOP/S:</span>
             <span className="text-center text-2xl font-semibold">0</span>
           </div>
@@ -289,19 +313,19 @@ export default function Home() {
       <div className="flex items-center space-x-4" >
         <h2 className="text-lg font-semibold mx-5">SENSOR 2</h2>
         <div className="flex space-x-2">
-          <div className="flex flex-col justify-center p-4 w-64 bg-[#b7e1a1] rounded">
+          <div className="flex flex-col justify-center p-4 w-[330px] bg-[#b7e1a1] rounded">
             <span className="text-left text-xl font-medium">COUNT/S:</span>
             <span className="text-center text-2xl font-semibold">0</span>
           </div>
-          <div className="flex flex-col justify-center p-4 w-64 bg-[#b7e1a1] rounded">
+          <div className="flex flex-col justify-center p-4 w-[330px] bg-[#b7e1a1] rounded">
             <span className="text-left text-xl font-medium">LOW/S:</span>
             <span className="text-center text-2xl font-semibold">0</span>
           </div>
-          <div className="flex flex-col  justify-center p-4 w-64 bg-[#b7e1a1] rounded">
+          <div className="flex flex-col  justify-center p-4 w-[330px] bg-[#b7e1a1] rounded">
             <span className="text-left text-xl font-medium">HIGH/S:</span>
             <span className="text-center text-2xl font-semibold">0</span>
           </div>
-          <div className="flex flex-col justify-center p-4 w-64 bg-[#b7e1a1] rounded">
+          <div className="flex flex-col justify-center p-4 w-[330px] bg-[#b7e1a1] rounded">
             <span className="text-left text-xl font-medium">STOP/S:</span>
             <span className="text-center text-2xl font-semibold">0</span>
           </div>
@@ -310,19 +334,19 @@ export default function Home() {
       <div className="flex items-center space-x-4" >
         <h2 className="text-lg font-semibold mx-5">SENSOR 3</h2>
         <div className="flex space-x-2">
-          <div className="flex flex-col justify-center p-4 w-64 bg-[#ffd452] rounded">
+          <div className="flex flex-col justify-center p-4 w-[330px] bg-[#ffd452] rounded">
             <span className="text-left text-xl font-medium">COUNT/S:</span>
             <span className="text-center text-2xl font-semibold">0</span>
           </div>
-          <div className="flex flex-col justify-center p-4 w-64 bg-[#ffd452] rounded">
+          <div className="flex flex-col justify-center p-4 w-[330px] bg-[#ffd452] rounded">
             <span className="text-left text-xl font-medium">LOW/S:</span>
             <span className="text-center text-2xl font-semibold">0</span>
           </div>
-          <div className="flex flex-col  justify-center p-4 w-64 bg-[#ffd452] rounded">
+          <div className="flex flex-col  justify-center p-4 w-[330px] bg-[#ffd452] rounded">
             <span className="text-left text-xl font-medium">HIGH/S:</span>
             <span className="text-center text-2xl font-semibold">0</span>
           </div>
-          <div className="flex flex-col justify-center p-4 w-64 bg-[#ffd452] rounded">
+          <div className="flex flex-col justify-center p-4 w-[330px] bg-[#ffd452] rounded">
             <span className="text-left text-xl font-medium">STOP/S:</span>
             <span className="text-center text-2xl font-semibold">0</span>
           </div>
@@ -346,3 +370,4 @@ export default function Home() {
     </div>
   )
 }
+
