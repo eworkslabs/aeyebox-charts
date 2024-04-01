@@ -30,11 +30,10 @@ export type Machines = {
 
 export type Plants = {
     id:number;
-    companyid: number;
     name?: string
 }
 
-export type Telemetry = {
+export type Telemetries = {
     name: string;
     kpis: Kpis;
     series: Series;
