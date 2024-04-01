@@ -13,16 +13,16 @@ const Desktop: NextPage = () => {
         </h1>
         <div className="relative inline-block min-w-[89px] z-[1] mq450:text-base">
           <span>{`→ `}</span>
-          <span className="font-light">Ewrorks</span>
+          <span className="font-light">Syrius</span>
         </div>
         <div className="relative font-light inline-block min-w-[51px] z-[1] mq450:text-base">
-          <a href="http://localhost:3000/syrius">Syrius</a>
+          <a href="http://localhost:3000/echeck">Eworks</a>
         </div>
       </nav>
       <main className="flex-1 bg-gainsboro flex flex-col items-start justify-start pt-[38px] px-[21px] pb-[559px] box-border gap-[27px] max-w-[calc(100%_-_242px)] text-left text-[22px] text-darkslategray font-murecho mq450:pt-5 mq450:pb-[236px] mq450:box-border mq950:pt-[25px] mq950:pb-[363px] mq950:box-border mq950:max-w-full">
         <div className="w-[1198px] h-[1024px] relative bg-gainsboro hidden max-w-full" />
         <div className="relative font-medium inline-block min-w-[95px] z-[1] mq450:text-[18px]">
-          → Eworks
+          → Syrius
         </div>
         <FrameComponent />
       </main>
