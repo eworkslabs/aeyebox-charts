@@ -4,9 +4,8 @@ import dynamic from "next/dynamic";
 import DatePicker from "./DatePicker";
 import ProductionLine from "@/pages/ProductionLine";
 import React, { useEffect, useState } from "react";
-import { Companies, Locations, Plants, Lines, Machines, Telemetries } from "@/interfaces";
+import { Companies, Locations, Plants, Lines, Machines, Telemetries, Series } from "@/interfaces";
 import Select from "react-select";
-import { machine } from "os";
 
 const colorskpis = ["#c5e0f4", "#b7e1a1", "#ffd452"];
 
@@ -132,7 +131,6 @@ export default function Home() {
 
     const handleMachineChange = (selectedOption: any) => {
       setSelectedMachine(selectedOption.value);
-      console.log;
     };
 
     return (
@@ -193,174 +191,218 @@ export default function Home() {
     );
   }
 
-  const [telemetriesSeries, setTelementrySeries] = useState<any[]>([]);
-  const [kpis, setKpis] = useState<any[]>([]);
+  const ChartComponent: React.FC<{ machineId: number}> = ({ machineId }) => {
+    const [telemetryData, setTelemetryData] = useState<Telemetries[]>([]);
+    const [telementrie] = useState<any[]>([]);
+    const [kpis, setKpis] = useState<any[]>([]);
 
-  useEffect(() => {
-    async function getData() {
-      const data = await fetch(`http://localhost:3000/api/telemetries?machine=3`).then((res) => res.json());
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch(`http://localhost:3000/api/telementries?machine=${machineId}`);
+          const data = await response.json();
 
-      const telemetries = data.map((item: any) => {
-        return {
-          name: item.name,
-          data: item.series,
-        };
-      });
+          const formattedData: Telemetries[] = data.map((item: any) => {
+            return {
+              name: `Sensor ${machineId}`,
+              idvalue: item.idvalue,
+              kpis: {
+                counts: item.kpis.counts,
+                lows: item.kpis.lows,
+                highs: item.kpis.highs,
+                stops: item.kpis.stops,
+              },
+              series: {
+                speed: item.series.speed,
+                count: item.series.count,
+                stops: item.series.stops,
+              },
+            };
+          });
 
-      setTelementrySeries(telemetries);
+          setTelemetryData(formattedData);
+        } catch (error) {
+          console.error("Erro ao buscar dados:", error);
+        }
+      };
 
-      const kpisData = data.map((item: any) => {
-        return {
-          name: item.name,
-          data: item.kpis,
-        };
-      });
-      setKpis(kpisData);
-    }
-    getData();
-  }, []);
+      fetchData();
+    }, [machineId]);
 
-  const xaxis = {
-    categories: ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
-  };
+    // const [telemetriesSeries, setTelementrySeries] = useState<Series[]>([]);
+    // const [selectedTelementry, setSelectedPTelementry] = useState<number | null>(null);
+    // const [kpis, setKpis] = useState<any[]>([]);
 
-  const countOptions = {
-    colors: ["#ffda2e", "#ee00ff"],
-    tooltip: {
-      enabled: true,
-      theme: "dark",
-    },
-    chart: {
-      foreColor: "dark",
-    },
-    subtitle: {
-      text: "Counts",
-      offsetY: 0,
-      offsetX: 8,
-    },
-    markes: {
-      size: 4,
-      strokWidth: 2,
-      strokeColor: "#ffda",
-    },
-    grid: {
-      show: true,
-    },
-    xaxis,
-  };
+    // useEffect(() => {
+    //   async function getData(machineId: number) {
+    //     const data = await fetch(`http://localhost:3000/api/telemetries?machine=${machineId}`).then((res) => res.json());
 
-  // const countSeries = [
-  //   {
-  //     name: "Sensor 1",
-  //     data: [],
-  //   },
-  //   {
-  //     name: "Sensor 2",
-  //     data: [],
-  //   },
-  // ];
+    //     const telemetries = data.map((item: any) => {
+    //       return {
+    //         name: item.name,
+    //         data: item.series,
+    //       };
+    //     });
 
-  const speedOptions = {
-    subtitle: {
-      text: "Speed",
-      offsetY: 0,
-      offsetX: 8,
-    },
-    xaxis,
-  };
+    //     setTelementrySeries(telemetries);
 
-  // const speedSeries = [
-  //   {
-  //     name: "Sensor 1",
-  //     data: [],
-  //   },
-  //   {
-  //     name: "Sensor 2",
-  //     data: [],
-  //   },
-  // ];
+    //     setKpis(kpisData);
+    //   }
+    //   getData();
+    // }, []);
 
-  const stopsOptions = {
-    subtitle: {
-      text: "Stops",
-      offsetY: 0,
-      offsetX: 8,
-    },
-    xaxis,
-    chart: {
-      stacked: true,
-    },
-  };
+    const xaxis = {
+      categories: ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
+    };
 
-  // const stopsSeries = [{
-  //   name: 'Sensor 1',
-  //   data: [],
-  // }, {
-  //   name: 'Sensor 2',
-  //   data: []
-  // }
-  // ]
+    const countOptions = {
+      colors: ["#ffda2e", "#ee00ff"],
+      tooltip: {
+        enabled: true,
+        theme: "dark",
+      },
+      chart: {
+        foreColor: "dark",
+      },
+      subtitle: {
+        text: "Counts",
+        offsetY: 0,
+        offsetX: 8,
+      },
+      markes: {
+        size: 4,
+        strokWidth: 2,
+        strokeColor: "#ffda",
+      },
+      grid: {
+        show: true,
+      },
+      xaxis,
+    };
 
-  const ProductionLineData = {
-    title: "",
-    productionLine: "W3 - Prod69 - L7",
-    series3: "Filler",
-    series4: "Labelizer",
-    xPerMinute: 31,
-    date: "Thursday, 31 Aug 2023",
-    counts: {
-      counts: 60,
-      low: 11 * 60,
-      high: 16 * 60,
-    },
-    lost: 6,
-    stops: 45,
-  };
+    // const countSeries = [
+    //   {
+    //     name: "Sensor 1",
+    //     data: [],
+    //   },
+    //   {
+    //     name: "Sensor 2",
+    //     data: [],
+    //   },
+    // ];
 
-  return (
-    <div>
-      <div className="mt-5 mx-5">
-        <Selects />
-      </div>
-      <div className="flex flex-col space-y-6">
-        {kpis.map((item, index) => (
-          <div className="flex items-center space-x-4">
-            <h2 className="text-lg font-semibold mt-5 mx-5">{item.name}</h2>
-            <div className="flex space-x-2 mt-5">
-              <div className="flex flex-col justify-center p-4 w-[330px] rounded" style={{ backgroundColor: colorskpis[index] }}>
-                <span className="text-left text-xl font-medium ">COUNT/S:</span>
-                <span className="text-center text-2xl font-semibold ">{item.data.counts}</span>
-              </div>
-              <div className="flex flex-col justify-center p-4 w-[330px] rounded" style={{ backgroundColor: colorskpis[index] }}>
-                <span className="text-left text-xl font-medium">LOW/S:</span>
-                <span className="text-center text-2xl font-semibold">{item.data.lows}</span>
-              </div>
-              <div className="flex flex-col justify-center p-4 w-[330px] rounded" style={{ backgroundColor: colorskpis[index] }}>
-                <span className="text-left text-xl font-medium">HIGH/S:</span>
-                <span className="text-center text-2xl font-semibold">{item.data.highs}</span>
-              </div>
-              <div className="flex flex-col justify-center p-4 w-[330px] rounded" style={{ backgroundColor: colorskpis[index] }}>
-                <span className="text-left text-xl font-medium">STOP/S:</span>
-                <span className="text-center text-2xl font-semibold">{item.data.stops}</span>
-              </div>
-            </div>
-          </div>
-        ))}
+    const speedOptions = {
+      subtitle: {
+        text: "Speed",
+        offsetY: 0,
+        offsetX: 8,
+      },
+      xaxis,
+    };
 
-        <div className="Calendar p-4 ">
-          <DatePicker />
+    // const speedSeries = [
+    //   {
+    //     name: "Sensor 1",
+    //     data: [],
+    //   },
+    //   {
+    //     name: "Sensor 2",
+    //     data: [],
+    //   },
+    // ];
+
+    const stopsOptions = {
+      subtitle: {
+        text: "Stops",
+        offsetY: 0,
+        offsetX: 8,
+      },
+      xaxis,
+      chart: {
+        stacked: true,
+      },
+    };
+
+    // const stopsSeries = [
+    //   {
+    //     name: "Sensor 1",
+    //     data: [],
+    //   },
+    //   {
+    //     name: "Sensor 2",
+    //     data: [],
+    //   },
+    // ];
+
+    const ProductionLineData = {
+      title: "",
+      productionLine: "W3 - Prod69 - L7",
+      series3: "Filler",
+      series4: "Labelizer",
+      xPerMinute: 31,
+      date: "Thursday, 31 Aug 2023",
+      counts: {
+        counts: 60,
+        low: 11 * 60,
+        high: 16 * 60,
+      },
+      lost: 6,
+      stops: 45,
+    };
+
+    return (
+      <div>
+        <div className="mt-5 mx-5">
+          <Selects />
         </div>
-
-        <div className="Charts">
-          {series.map((item, arra) => (
-            <div>
-              <Chart options={countOptions} series={item.data.series} type="line" height={350} width={1500} />
-              <Chart options={speedOptions} series={item.series} type="area" height={350} width={1500} />
-              <Chart options={stopsOptions} series={item.series} type="bar" height={350} width={1500} />
+        <div className="flex flex-col space-y-6">
+          {kpis.map((item, index) => (
+            <div className="flex items-center space-x-4">
+              <h2 className="text-lg font-semibold mt-5 mx-5">{item.name}</h2>
+              <div className="flex space-x-2 mt-5">
+                <div className="flex flex-col justify-center p-4 w-[330px] rounded" style={{ backgroundColor: colorskpis[index] }}>
+                  <span className="text-left text-xl font-medium ">COUNT/S:</span>
+                  <span className="text-center text-2xl font-semibold ">{item.kpis.counts}</span>
+                </div>
+                <div className="flex flex-col justify-center p-4 w-[330px] rounded" style={{ backgroundColor: colorskpis[index] }}>
+                  <span className="text-left text-xl font-medium">LOW/S:</span>
+                  <span className="text-center text-2xl font-semibold">{item.kpis.lows}</span>
+                </div>
+                <div className="flex flex-col justify-center p-4 w-[330px] rounded" style={{ backgroundColor: colorskpis[index] }}>
+                  <span className="text-left text-xl font-medium">HIGH/S:</span>
+                  <span className="text-center text-2xl font-semibold">{item.kpis.highs}</span>
+                </div>
+                <div className="flex flex-col justify-center p-4 w-[330px] rounded" style={{ backgroundColor: colorskpis[index] }}>
+                  <span className="text-left text-xl font-medium">STOP/S:</span>
+                  <span className="text-center text-2xl font-semibold">{item.kpis.stops}</span>
+                </div>
+              </div>
             </div>
           ))}
+
+          <div className="Calendar p-4 ">
+            <DatePicker />
+          </div>
+
+          <div className="Charts">
+            {loading ? (
+              <h2>Loading...</h2>
+            ) : (
+              <div>
+                {telementrie.map((item) => (
+                  <div>
+                    <Chart options={countOptions} series={telemetryData.map((item) => ({ name: item.name, data: item.series.count }))} type="line" height={350} width={1500} />
+
+                    <Chart options={speedOptions} series={telemetryData.map(item => ({ name: item.name, data: item.series.speed }))} type="area" height={350} width={1500} />
+
+                    <Chart options={stopsOptions} series={telemetryData.map(item => ({ name: item.name, data: item.series.stops }))} type="bar" height={350} width={1500} />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 }
