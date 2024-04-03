@@ -1,7 +1,7 @@
 import { render } from "react-dom";
 import styles from "/styles/Home.module.css";
 import dynamic from "next/dynamic";
-import DatePicker from "./DatePicker";
+import DatePicker from "@/components/calendar/DatePicker";
 import React, { useEffect, useState } from "react";
 import { Companies, Locations, Plants, Lines, Machines, Telemetries, Series } from "@/interfaces";
 import Select from "react-select";
