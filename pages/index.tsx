@@ -5,6 +5,8 @@ import DatePicker from "@/components/calendar/DatePicker";
 import React, { useEffect, useState } from "react";
 import { Companies, Locations, Plants, Lines, Machines, Telemetries, Series } from "@/interfaces";
 import Select from "react-select";
+import Kpis from "@/components/kpi/kpis";
+
 
 
 const colorskpis = ["#c5e0f4", "#b7e1a1", "#ffd452", "#44403c", "#581c87", "#94a3b8"];
@@ -356,7 +358,6 @@ export default function Home() {
           <div className="Calendar p-4 ">
             <DatePicker />
           </div>
-
           <div className="Charts">
             {loading ? (
               <h2>Loading...</h2>

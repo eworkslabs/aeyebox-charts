@@ -34,7 +34,7 @@
     "pages/calendar.js",
     "pages/_app.tsx",
     ".next/types/**/*.ts"
-  ],
+, "pages/todos/teste.jsx"  ],
   "exclude": [
     "node_modules"
   ]
