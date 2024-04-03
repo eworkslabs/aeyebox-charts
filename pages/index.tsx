@@ -7,7 +7,7 @@ import { Companies, Locations, Plants, Lines, Machines, Telemetries, Series } fr
 import Select from "react-select";
 
 
-const colorskpis = ["#c5e0f4", "#b7e1a1", "#ffd452"];
+const colorskpis = ["#c5e0f4", "#b7e1a1", "#ffd452", "#44403c", "#581c87", "#94a3b8"];
 
 const Chart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -91,8 +91,10 @@ export default function Home() {
     categories: ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
   };
 
+
+
   const countOptions = {
-    colors: ["#ffda2e", "#ee00ff", "#16a34a"],
+    colors: colorskpis,
     tooltip: {
       enabled: true,
     },
@@ -123,6 +125,7 @@ export default function Home() {
       offsetX: 8,
     },
     xaxis,
+    colors: colorskpis,
   };
 
 
@@ -133,6 +136,7 @@ export default function Home() {
       offsetX: 8,
     },
     xaxis,
+    colors: colorskpis,
     chart: {
       stacked: true,
     },
@@ -161,10 +165,10 @@ export default function Home() {
   const [plants, setPlants] = useState<Plants[]>([]);
   const [lines, setLines] = useState<Lines[]>([]);
   const [machines, setMachines] = useState<{ value: number; label: string }[]>([]);
-  const [selectedCompany, setSelectedCompany] = useState<number | null>(null);
-  const [selectedLocations, setSelectedLocations] = useState<number | null>(null);
-  const [selectedPlants, setSelectedPlants] = useState<number | null>(null);
-  const [selectedLines, setSelectedLines] = useState<number | null>(null);
+  const [selectedCompany, setSelectedCompany] = useState<any>([]);
+  const [selectedLocations, setSelectedLocations] = useState<any>([]);
+  const [selectedPlants, setSelectedPlants] = useState<any>([]);
+  const [selectedLines, setSelectedLines] = useState<any>([]);
 
   useEffect(() => {
     fetchCompanies();
@@ -175,6 +179,7 @@ export default function Home() {
       const response = await fetch("http://localhost:3000/api/companies");
       const data = await response.json();
       setCompanies(data);
+      setLocations([])
     } catch (error) {
       console.error("Error fetching Companies:", error);
     }
@@ -185,6 +190,7 @@ export default function Home() {
       const response = await fetch(`http://localhost:3000/api/locations?company=${companyId}`);
       const data = await response.json();
       setLocations(data);
+      setPlants([])
     } catch (error) {
       console.error("Error fetching Pocations:", error);
     }
@@ -195,6 +201,7 @@ export default function Home() {
       const response = await fetch(`http://localhost:3000/api/plants?locations=${locationId}`);
       const data = await response.json();
       setPlants(data);
+      setLines([])
     } catch (error) {
       console.error("Error fetching Plants");
     }
@@ -205,6 +212,7 @@ export default function Home() {
       const response = await fetch(`http://localhost:3000/api/lines?plants=${plantId}`);
       const data = await response.json();
       setLines(data);
+      setMachines([])
     } catch (error) {
       console.error("Error fetching Lines");
     }
@@ -245,6 +253,8 @@ export default function Home() {
   const handleLinesChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const lineId = parseInt(event.target.value);
     setSelectedLines(lineId);
+    setMachines([])
+    setSelectedMachine([])
     fetchMachines(lineId);
   };
 
@@ -276,7 +286,7 @@ export default function Home() {
             <label className="ml-5" htmlFor="locationSelect">
               Select Location:
             </label>
-            <select className="w-32" id="locationSelect" onChange={handleLocationsChange} disabled={!selectedCompany}>
+            <select className="w-32" id="locationSelect" onChange={handleLocationsChange} disabled={selectedCompany.length <1 }>
               <option value="">Select...</option>
               {locations.map((location) => (
                 <option key={location.id} value={location.id}>
@@ -288,8 +298,7 @@ export default function Home() {
             <label className="ml-5 " htmlFor="plantsSelect">
               Select Plant:
             </label>
-            <select classNam
-              e="w-32" id="plantSelect" onChange={handlePlantsChange} disabled={!selectedLocations}>
+            <select className="w-32" id="plantSelect" onChange={handlePlantsChange} disabled={selectedLocations.length <1 }>
               <option value="">Select...</option>
               {plants.map((plant) => (
                 <option key={plant.id} value={plant.id}>
@@ -301,7 +310,7 @@ export default function Home() {
             <label className="ml-5" htmlFor="linesSelect">
               Select Lines:
             </label>
-            <select className="w-32" id="lineSelect" onChange={handleLinesChange} disabled={!selectedPlants}>
+            <select className="w-32" id="lineSelect" onChange={handleLinesChange} disabled={selectedPlants.length <1}>
               <option value="">Select...</option>
               {lines.map((line) => (
                 <option key={line.id} value={line.id}>
@@ -313,7 +322,7 @@ export default function Home() {
             <label className="ml-5" htmlFor="machinesSelect">
               Select Machines:
             </label>
-            <Select className="w-[320px] h-8 ml-5" isDisabled={!selectedLines} id="machinesSelect" options={machines} onChange={handleMachineChange} value={selectedMachine} isMulti />
+            <Select className="w-[320px] h-8 ml-5" isDisabled={selectedLines.length <1} id="machinesSelect" options={machines} onChange={handleMachineChange} value={selectedMachine} isMulti />
           </div>
         </div>
 
