@@ -1,12 +1,15 @@
-// Seu componente React
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-export default function MyDatePicker() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+interface Props{
+  selectedDate: any
+}
 
-  const handleDateChange = (date) => {
+export default function MyDatePicker({selectedDate, setSelectedDate}:any) {
+
+
+  const handleDateChange = (date: any) => {
     setSelectedDate(date);
   };
 
