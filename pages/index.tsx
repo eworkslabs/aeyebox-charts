@@ -16,37 +16,19 @@ const Chart = dynamic(() => import("react-apexcharts"), {
 interface HomePageProps { }
 
 export default function Home() {
-  const [series, setSeries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedMachine, setSelectedMachine] = useState<number[]>([]);
-
-
-  useEffect(() => {
-    fetch("http://localhost:3000/api/series")
-      .then((response) => response.json())
-      .then((data) => {
-        setSeries(data);
-        console.log("fetched series", series);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (series.length) {
-      console.log("loaded TRUE", series);
-      setLoading(false);
-    }
-  }, [series]);
-
   const [countsSeries, setCountSeries] = useState<any[]>([]);
   const [speedsSeries, setSpeedSeries] = useState<any[]>([]);
   const [stopsSeries, setStopSeries] = useState<any[]>([]);
   const [kpis, setKpis] = useState<any[]>([]);
 
-  
+
   useEffect(() => {
     const fetchTelementries = async function getData() {
       console.log('selectedMachine', selectedMachine);
-      const data = await fetch(`http://localhost:3000/api/telemetries?machines=${selectedMachine.map((machine) => machine.value)}`).then((res) => res.json());
+      const date = '2024-04-04'
+      const data = await fetch(`http://localhost:3000/api/telemetries?date=${date}&machines=${selectedMachine.map((machine) => machine.value)}`).then((res) => res.json());
 
       const counts = data.map((item: any) => {
         return {
@@ -264,7 +246,6 @@ export default function Home() {
 
   console.log("resultado machine", selectedMachine)
 
-
   return (
     <div>
       <div className="mt-5 mx-5">
@@ -355,15 +336,9 @@ export default function Home() {
             <DatePicker />
           </div>
           <div className="Charts">
-            {loading ? (
-              <h2>Loading...</h2>
-            ) : (
-              <>
-                <Chart options={countOptions} series={countsSeries} type="line" height={350} width={1500} />
-                <Chart options={speedOptions} series={speedsSeries} type="area" height={350} width={1500} />
-                <Chart options={stopsOptions} series={stopsSeries} type="bar" height={350} width={1500} />
-              </>
-            )}
+            <Chart options={countOptions} series={countsSeries} type="line" height={350} width={1500} />
+            <Chart options={speedOptions} series={speedsSeries} type="area" height={350} width={1500} />
+            <Chart options={stopsOptions} series={stopsSeries} type="bar" height={350} width={1500} />
           </div>
         </div>
       </div>
