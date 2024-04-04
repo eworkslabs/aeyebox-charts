@@ -7,8 +7,6 @@ import { Companies, Locations, Plants, Lines, Machines, Telemetries, Series } fr
 import Select from "react-select";
 import Kpis from "@/components/kpi/kpis";
 
-
-
 const colorskpis = ["#c5e0f4", "#b7e1a1", "#ffd452", "#44403c", "#581c87", "#94a3b8"];
 
 const Chart = dynamic(() => import("react-apexcharts"), {
@@ -61,7 +59,6 @@ export default function Home() {
 
       const speeds = data.map((item: any) => {
         return {
-
           name: item.name,
           data: item.series.speed,
         };
@@ -81,6 +78,7 @@ export default function Home() {
       const kpisData = data.map((item: any) => {
         return {
           name: item.name,
+          color: item.color,
           data: item.kpis,
         };
       });
@@ -92,8 +90,6 @@ export default function Home() {
   const xaxis = {
     categories: ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
   };
-
-
 
   const countOptions = {
     colors: colorskpis,
@@ -335,19 +331,19 @@ export default function Home() {
             <div className="flex items-center space-x-4">
               <h2 className="text-lg font-semibold mt-5 mx-5">{item.name}</h2>
               <div className="flex space-x-2 mt-5">
-                <div className="flex flex-col justify-center p-4 w-[330px] rounded" style={{ backgroundColor: colorskpis[index] }}>
+                <div className="flex flex-col justify-center p-4 w-[330px] rounded" style={{ backgroundColor: item.color }}>
                   <span className="text-left text-xl font-medium ">COUNT/S:</span>
                   <span className="text-center text-2xl font-semibold ">{item.data.counts}</span>
                 </div>
-                <div className="flex flex-col justify-center p-4 w-[330px] rounded" style={{ backgroundColor: colorskpis[index] }}>
+                <div className="flex flex-col justify-center p-4 w-[330px] rounded" style={{ backgroundColor: item.color }}>
                   <span className="text-left text-xl font-medium">LOW/S:</span>
                   <span className="text-center text-2xl font-semibold">{item.data.lows}</span>
                 </div>
-                <div className="flex flex-col justify-center p-4 w-[330px] rounded" style={{ backgroundColor: colorskpis[index] }}>
+                <div className="flex flex-col justify-center p-4 w-[330px] rounded" style={{ backgroundColor: item.color }}>
                   <span className="text-left text-xl font-medium">HIGH/S:</span>
                   <span className="text-center text-2xl font-semibold">{item.data.highs}</span>
                 </div>
-                <div className="flex flex-col justify-center p-4 w-[330px] rounded" style={{ backgroundColor: colorskpis[index] }}>
+                <div className="flex flex-col justify-center p-4 w-[330px] rounded" style={{ backgroundColor: item.color }}>
                   <span className="text-left text-xl font-medium">STOP/S:</span>
                   <span className="text-center text-2xl font-semibold">{item.data.stops}</span>
                 </div>
