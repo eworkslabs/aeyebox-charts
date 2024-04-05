@@ -3,16 +3,15 @@ import CompanySelect from "@/components/api/CompanySelect";
 import LocationSelect from "@/components/api/LocationSelect";
 import PlantSelect from "@/components/api/PlantSelect";
 import LineSelect from "@/components/api/LineSelect";
-import DatePicker from "@/pages/DatePicker";
+import MachineSelect from "@/components/api/MachineSelect";
+import KpiChart from "@/components/api/KpiChart";
 
 const Home: React.FC = () => {
   const [selectedCompany, setSelectedCompany] = useState<number | undefined>(undefined);
   const [selectedLocation, setSelectedLocation] = useState<number | undefined>(undefined);
   const [selectedPlant, setSelectedPlant] = useState<number | undefined>(undefined);
   const [selectedLine, setSelectedLine] = useState<number | undefined>(undefined);
-  const [selectedMachine, setSelectedMachine] = useState<{ value: number; label: string }[]>([]);
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
+  const [selectedMachines, setSelectedMachines] = useState<{ value: number; label: string }[]>([]);
 
   return (
     <div>
@@ -23,16 +22,12 @@ const Home: React.FC = () => {
             <LocationSelect selectedCompany={selectedCompany} onSelectLocation={setSelectedLocation} />
             <PlantSelect selectedLocation={selectedLocation} onSelectPlant={setSelectedPlant} />
             <LineSelect selectedPlant={selectedPlant} onSelectLine={setSelectedLine} />
-            <div></div>
-          </div>
-          <div className="Calendar">
-            <label className="pr-4 ml-[3px]" htmlFor="Calendar">
-              Date:
-            </label>
-            <DatePicker selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+            <MachineSelect selectedLines={[selectedLine || 0]} onSelectMachines={setSelectedMachines} />
+
           </div>
         </div>
       </div>
+      <KpiChart selectedMachines={selectedMachines} />
     </div>
   );
 };
