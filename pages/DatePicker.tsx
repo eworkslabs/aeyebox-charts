@@ -17,7 +17,7 @@ export default function MyDatePicker({selectedDate, setSelectedDate}:any) {
     <DatePicker
       selected={selectedDate}
       onChange={handleDateChange}
-      dateFormat="MM/dd/yyyy"
+      dateFormat="dd/MM/yyyy"
       showTimeSelect={false} 
     />
   );

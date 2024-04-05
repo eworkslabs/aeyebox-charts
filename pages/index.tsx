@@ -289,7 +289,7 @@ export default function Home() {
             </select>
 
             <label className="ml-5" htmlFor="linesSelect">
-              Select Lines:
+              Lines:
             </label>
             <select className="w-32" id="lineSelect" onChange={handleLinesChange} disabled={selectedPlants.length < 1}>
               <option value="">Select...</option>

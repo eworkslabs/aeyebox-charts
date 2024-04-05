@@ -1,4 +1,4 @@
-// Arquivo: chartOptions.ts
+
 
 export const colorskpis = ["#c5e0f4", "#b7e1a1", "#ffd452", "#44403c", "#581c87", "#94a3b8"];
 
