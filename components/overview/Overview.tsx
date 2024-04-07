@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 import React, { useState } from "react";
-import CompanySelect from "../api/CompanySelect";
-import LocationSelect from "../api/LocationSelect";
-import PlantSelect from "../api/PlantSelect";
-import LineSelect from "../api/LineSelect";
-import MachineSelect from "../api/MachineSelect";
+import CompanySelect from "../apis/CompanySelect";
+import LocationSelect from "../apis/LocationSelect";
+import PlantSelect from "../apis/PlantSelect";
+import LineSelect from "../apis/LineSelect";
+import MachineSelect from "../apis/MachineSelect";
 import DatePicker from "../calendar/DatePicker";
 
 const EdashExport: NextPage = () => {
