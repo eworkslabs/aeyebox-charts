@@ -40,14 +40,15 @@ const MachineSelect: React.FC<MachineSelectProps> = ({ selectedLines, onSelectMa
   }, [selectedLines, onSelectMachine]);
 
   return (
-    <Select
-      className="w-[450px] h-8 ml-5"
-      isDisabled={selectedLines.length < 1}
-      options={machines}
-      onChange={onSelectMachine}
-      isMulti
-    />
+    <div className="w-[751.9px] relative h-9 text-darkslategray">
+      <div className="absolute top-[0px] left-[90.9px] w-[661px] h-[35px]">
+        <img className="absolute top-[12px] left-[636px] w-[11px] h-[11px] object-contain" alt="" src="/polygon-1.svg" />
+      </div>
+      <div className="absolute top-[4px] left-[0px] inline-block w-[98.1px]">Machines:</div>
+      <Select className="absolute top-[0px] left-[90.9px] text-gray whitespace-pre-wrap inline-block w-[661px] h-[35px]" isDisabled={selectedLines.length < 1} options={machines} onChange={onSelectMachine} isMulti />
+    </div>
   );
 };
 
 export default MachineSelect;
+

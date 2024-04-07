@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import DatePicker from "@/pages/DatePicker";
+import DatePicker from "@/components/calendar/DatePicker";
 import { countOptions, speedOptions, stopsOptions } from "../optionsgraphic/Options";
 
 const Chart = dynamic(() => import("react-apexcharts"), {
