@@ -7,7 +7,7 @@ const Chart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-const KpiChart: React.FC<{ selectedMachines: { value: number; label: string }[] }> = ({ selectedMachines }) => {
+const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }[] }> = ({ selectedMachines }) => {
   const [loading, setLoading] = useState(true);
   const [countsSeries, setCountSeries] = useState<any[]>([]);
   const [speedsSeries, setSpeedSeries] = useState<any[]>([]);
@@ -104,7 +104,7 @@ const KpiChart: React.FC<{ selectedMachines: { value: number; label: string }[] 
   );
 };
 
-export default KpiChart;
+export default Telemetries;
 {
   /* <div className="absolute top-[0px] left-[169px] bg-gainsboro w-[2077px] h-[1649px]" />
 <div className="absolute top-[41px] left-[263px] text-3xl font-medium text-black whitespace-pre-wrap text-left">→ Overview</div>
