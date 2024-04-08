@@ -1,5 +1,3 @@
-import { render } from "react-dom";
-import styles from "/styles/Home.module.css";
 import dynamic from "next/dynamic";
 import DatePicker from "@/components/calendar/DatePicker";
 import React, { useEffect, useState } from "react";
@@ -15,7 +13,6 @@ const Chart = dynamic(() => import("react-apexcharts"), {
 interface HomePageProps {}
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
   const [selectedMachine, setSelectedMachine] = useState([]);
   const [countsSeries, setCountSeries] = useState<any[]>([]);
   const [speedsSeries, setSpeedSeries] = useState<any[]>([]);

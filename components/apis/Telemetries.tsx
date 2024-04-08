@@ -105,47 +105,4 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
 };
 
 export default Telemetries;
-{
-  /* <div className="absolute top-[0px] left-[169px] bg-gainsboro w-[2077px] h-[1649px]" />
-<div className="absolute top-[41px] left-[263px] text-3xl font-medium text-black whitespace-pre-wrap text-left">→ Overview</div>
-<img className="absolute top-[38.3px] right-[42px] w-5 h-[26.3px]" alt="" src="/vector.svg" />
-<img className="absolute top-[39.5px] right-[85.5px] w-[25px] h-[26.3px]" alt="" src="/vector.svg" />
-<div className="absolute top-[315px] left-[265px] bg-silver w-[1865px] h-[35px]" />
-<div className="absolute top-[317px] left-[263px] text-lg inline-block w-24 h-7">
-  <p className="m-0">KPIs</p>
-</div>
-<div className="absolute top-[317px] left-[558px] text-lg inline-block w-24 h-7">
-  <p className="m-0">Count</p>
-</div>
-<div className="absolute top-[317px] left-[768px] inline-block w-24 h-7 text-lg">
-  <p className="m-0">
-    <span>Low</span>
-    <span className="text-mid">/s</span>
-  </p>
-</div>
-<div className="absolute top-[318px] left-[982px] text-lg inline-block w-24 h-7">
-  <p className="m-0">High/s</p>
-</div>
-<div className="absolute top-[319px] left-[1196px] text-lg inline-block w-24 h-7">Stop</div>
-<div className="absolute top-[358px] left-[558px] inline-block w-24 h-7">10</div>
-<div className="absolute top-[358px] left-[263px] inline-block w-24 h-7">S-01</div>
-<div className="absolute top-[400px] left-[264px] inline-block w-24 h-7">S-02</div>
-<div className="absolute top-[400px] left-[558px] inline-block w-24 h-7">20</div>
-<div className="absolute top-[358px] left-[768px] inline-block w-24 h-7">20</div>
-<div className="absolute top-[400px] left-[768px] inline-block w-24 h-7">40</div>
-<div className="absolute top-[359px] left-[976px] inline-block w-24 h-7">
-  <p className="m-0">30</p>
-</div>
-<div className="absolute top-[400px] left-[976px] inline-block w-24 h-7">
-  <p className="m-0">60</p>
-</div>
-<div className="absolute top-[358px] left-[1196px] inline-block w-24 h-7">
-  <p className="m-0">40</p>
-</div>
-<div className="absolute top-[400px] left-[1196px] inline-block w-24 h-7">
-  <p className="m-0">80</p>
-</div>
-<div className="absolute top-[393.5px] left-[262.5px] box-border w-[1866px] h-px border-t-[1px] border-solid border-silver" />
-<div className="absolute top-[437.5px] left-[264.5px] box-border w-[1866px] h-px border-t-[1px] border-solid border-silver" />
-<div className="absolute top-[466px] left-[169px] w-[2077px] h-[385px] text-left text-3xl text-black"> */
-}
+

@@ -50,15 +50,4 @@ const PlantSelect: React.FC<PlantSelectProps> = ({ selectedLocation, onSelectPla
 export default PlantSelect;
 
 
-  
-
-{/* <label htmlFor="plantSelect">Plant:</label>
-<select id="plantSelect" onChange={handlePlantChange} disabled={!selectedLocation}>
-  <option value="">Select...</option>
-  {plants.map((plant) => (
-    <option key={plant.id} value={plant.id}>
-      {plant.name}
-    </option>
-  ))}
-</select>  */}
 
