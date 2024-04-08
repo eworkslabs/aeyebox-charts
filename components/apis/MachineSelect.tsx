@@ -27,9 +27,9 @@ const MachineSelect: React.FC<MachineSelectProps> = ({ selectedLines, onSelectMa
           }));
           setMachines(machineOptions);
         } else {
-          // Limpar as máquinas selecionadas se nenhuma linha estiver selecionada
+          
           setMachines([]);
-          onSelectMachine([]); // Limpar a seleção
+          onSelectMachine([]); 
         }
       } catch (error) {
         console.error("Error fetching machines:", error);

@@ -23,18 +23,12 @@ export default function Home() {
   const [kpis, setKpis] = useState<any[]>([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-
-  
-
- 
-
   useEffect(() => {
-    const fetchTelementries = async function getData() {
+    const fetchTelemetries = async function getData() {
       console.log("selectedMachine", selectedMachine);
       const data = await fetch(`http://localhost:3000/api/telemetries?date=${selectedDate}&machines=${selectedMachine.map((machine) => machine.value)}`).then((res) => res.json());
 
-      
-      console.log(selectedDate)
+      console.log(selectedDate);
 
       const counts = data.map((item: any) => {
         return {
@@ -73,7 +67,7 @@ export default function Home() {
       setKpis(kpisData);
     };
 
-    fetchTelementries();
+    fetchTelemetries();
   }, [selectedMachine, selectedDate]);
 
   const xaxis = {

@@ -6,7 +6,7 @@ import PlantSelect from "@/components/apis/PlantSelect";
 import LineSelect from "@/components/apis/LineSelect";
 import MachineSelect from "@/components/apis/MachineSelect";
 import DatePicker from "@/components/calendar/DatePicker";
-import KpiChart from "../apis/Kpis";
+import Kpis from "../apis/Kpis";
 import Charts from "../apis/Charts";
 
 const EdashExport: NextPage = () => {
@@ -26,7 +26,7 @@ const EdashExport: NextPage = () => {
       <img className="absolute top-[38.3px] right-[42px] w-5 h-[26.3px]" alt="" src="/vector.svg" />
       <img className="absolute top-[39.5px] right-[85.5px] w-[25px] h-[26.3px]" alt="" src="/vector.svg" />
       <div className="absolute top-[315px] left-[265px] bg-silver w-[1865px] h-[35px]" />
-      <KpiChart selectedMachines={selectedMachines}  />
+      <Kpis selectedMachines={selectedMachines}  />
       <Charts selectedMachines={selectedMachines} />
       <div className="absolute top-[91px] left-[263px] w-[1147px] h-[213px] flex flex-row flex-wrap items-start justify-start gap-[23px] text-left text-lg text-gray">
         <div className="w-[1147px] relative h-9">

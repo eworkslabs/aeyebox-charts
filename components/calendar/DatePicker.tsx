@@ -10,7 +10,7 @@ export default function MyDatePicker({selectedDate, setSelectedDate}:any) {
 
 
   const handleDateChange = (date: any) => {
-    setSelectedDate(date);
+    setSelectedDate(date)
   };
 
   return (
