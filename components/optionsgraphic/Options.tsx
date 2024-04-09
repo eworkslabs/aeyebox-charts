@@ -1,6 +1,6 @@
 
 
-export const colorskpis = ["#c5e0f4", "#b7e1a1", "#ffd452", "#44403c", "#581c87", "#94a3b8"];
+export const colorskpis = ["#0a0a0a", "#0F75A0", "#2e1065", "#44403c", "#581c87", "#94a3b8"];
 
 export const xaxis = {
   categories: ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
@@ -15,9 +15,13 @@ export const countOptions = {
     foreColor: "dark",
   },
   subtitle: {
-    text: "Counts",
+    text: "→ Counts",
     offsetY: 0,
     offsetX: 8,
+    style:{
+      fontSize: "19px",
+      fontWeight: 'medium'
+    },
   },
   markes: {
     size: 4,
@@ -32,7 +36,11 @@ export const countOptions = {
 
 export const speedOptions = {
   subtitle: {
-    text: "Speed",
+    text: "→ Speed",
+    style:{
+      fontSize: "19px",
+      fontWeight: 'medium'
+    },
     offsetY: 0,
     offsetX: 8,
   },
@@ -42,7 +50,11 @@ export const speedOptions = {
 
 export const stopsOptions = {
   subtitle: {
-    text: "Stops",
+    text: "→ Stops",
+    style:{
+      fontSize: "19px",
+      fontWeight: 'medium'
+    },
     offsetY: 0,
     offsetX: 8,
   },

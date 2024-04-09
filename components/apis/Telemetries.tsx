@@ -103,9 +103,9 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
       ))}
 
       <div className="Charts">
-        <Chart options={countOptions} series={countsSeries} type="line" height={350} width={1650}  />
-        <Chart options={speedOptions} series={speedsSeries} type="area" height={350} width={1650}  />
-        <Chart options={stopsOptions} series={stopsSeries} type="bar" height={350} width={1650}  />
+        <Chart options={countOptions} series={countsSeries} type="line" height={350} width={1250}  />
+        <Chart options={speedOptions} series={speedsSeries} type="area" height={350} width={1250}  />
+        <Chart options={stopsOptions} series={stopsSeries} type="bar" height={350} width={1250}  />
       </div>
     </div>
   );
