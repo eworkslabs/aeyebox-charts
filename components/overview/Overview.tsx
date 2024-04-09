@@ -21,7 +21,7 @@ const EdashExport: NextPage = () => {
 
   return (
     <div className="bg-[#D9D9D9] flex-1 w-full relative h-[1649px] overflow-hidden text-center text-mid text-darkslategray font-murecho">
-      <div className="  w-[1147px] h-[213px] flex flex-col  items-start justify-start gap-[23px]   text-lg text-gray">
+      <div className="  h-[213px] flex flex-col  items-start justify-start gap-[23px]   text-lg text-gray">
 
         <div className=" pl-8 pt-[45px] w-[1147px] relative h-9">
           <div className="bg-white w-[1147px] h-[35px] whitespace-pre-wrap inline-block">{`    > type or say your prompt`}</div>
@@ -45,7 +45,7 @@ const EdashExport: NextPage = () => {
         <div className="Date flex flex-row gap-4 pl-8">
           <DatePicker selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
         </div>
-        <div className="Chart">
+        <div className="w-full">
           <Telemetries selectedMachines={selectedMachines} />
         </div>
       </div>
