@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import DatePicker from "@/components/calendar/DatePicker";
 import { countOptions, speedOptions, stopsOptions } from "../optionsgraphic/Options";
 
+
 const Chart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
@@ -19,8 +20,11 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
     const fetchTelemetries = async () => {
       setLoading(true);
       try {
+        console.log(typeof selectedDate, selectedDate, new Date (selectedDate));
+      
         const machinesQuery = selectedMachines.map((machine) => machine.value).join(",");
-        const response = await fetch(`http://localhost:3000/api/telemetries?date=${selectedDate}&machines=${machinesQuery}`);
+        const response = await fetch(`http://localhost:3000/api/telemetries?date=${selectedDate.getFullYear()}-${selectedDate.getMonth().toString().padStart(2,"0")}-${selectedDate.getDay().toString().padStart(2,"0")}&machines=${machinesQuery}`);
+        
         const data = await response.json();
 
         const counts = data.map((item: any) => ({
@@ -57,48 +61,51 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
     fetchTelemetries();
   }, [selectedMachines, selectedDate]);
 
+  console.log((kpis))
+
   return (
     <div>
       {kpis.map((item, index) => (
-        <div className="w-full relative bg-white h-[1649px] overflow-hidden text-center text-mid text-darkslategray font-murecho">
-          <div className="absolute top-[315px] left-[265px] bg-silver w-[1865px] h-[35px]" />
-          <div className="absolute top-[317px] left-[263px] text-lg inline-block w-24 h-7">
+        <div key={item.name}  className=" flex flex-row gap-5 font-murecho">
+          {item.name} 
+          {/* <div className=" bg-silver w-[1865px] h-[35px]" /> */}
+          <div className=" text-lg  w-24 h-7">
             <p className="m-0">KPIs</p>
           </div>
-          <div className="absolute top-[317px] left-[558px] text-lg inline-block w-24 h-7">
+          <div className="text-lg w-24 h-7">
             <p className="m-0">Count</p>
           </div>
-          <div className="absolute top-[317px] left-[768px] inline-block w-24 h-7 text-lg">
+          <div className=" w-24 h-7 text-lg">
             <p className="m-0">
               <span>Low</span>
               <span className="text-mid">/s</span>
             </p>
           </div>
-          <div className="absolute top-[318px] left-[982px] text-lg inline-block w-24 h-7">
+          <div className=" text-lg  w-24 h-7">
             <p className="m-0">High/s</p>
           </div>
-          <div className="absolute top-[319px] left-[1196px] text-lg inline-block w-24 h-7">Stop</div>
+          <div className="  text-lg  w-24 h-7">Stop</div>
 
-          <div className="absolute top-[358px] left-[558px] inline-block w-24 h-7">{item.data.counts}</div>
-          <div className="absolute top-[358px] left-[263px] inline-block w-24 h-7">{item.name}</div>
-          <div className="absolute top-[358px] left-[768px] inline-block w-24 h-7">{item.data.lows}</div>
+          <div className="  w-24 h-7">{item.data.counts}</div>
+          <div className="  w-24 h-7">{item.name}</div>
+          <div className=" w-24 h-7">{item.data.lows}</div>
 
-          <div className="absolute top-[359px] left-[976px] inline-block w-24 h-7">
+          <div className=" w-24 h-7">
             <p className="m-0">{item.data.highs}</p>
           </div>
 
-          <div className="absolute top-[358px] left-[1196px] inline-block w-24 h-7">
+          <div className="  w-24 h-7">
             <p className="m-0">{item.data.stops}</p>
           </div>
 
-          <div className="absolute top-[393.5px] left-[262.5px] box-border w-[1866px] h-px border-t-[1px] border-solid border-silver" />
+          <div className=" box-border w-[1866px] h-px border-t-[1px] border-solid border-silver" />
         </div>
       ))}
 
       <div className="Charts">
-        <Chart options={countOptions} series={countsSeries} type="line" height={350}  />
-        <Chart options={speedOptions} series={speedsSeries} type="area" height={350}  />
-        <Chart options={stopsOptions} series={stopsSeries} type="bar" height={350}  />
+        <Chart options={countOptions} series={countsSeries} type="line" height={350} width={1650}  />
+        <Chart options={speedOptions} series={speedsSeries} type="area" height={350} width={1650}  />
+        <Chart options={stopsOptions} series={stopsSeries} type="bar" height={350} width={1650}  />
       </div>
     </div>
   );

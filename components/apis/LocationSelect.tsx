@@ -30,24 +30,25 @@ const LocationSelect: React.FC<LocationSelectProps> = ({ selectedCompany, onSele
   };
 
   return (
-    <div className="w-[364.9px] relative h-9">
-    <div className="absolute top-[0px] left-[90.9px] w-[274px] h-[35px]">
-      <img className="absolute top-[12px] left-[249px] w-[11px] h-[11px] object-contain" alt="" src="/polygon-1.svg" />
-    </div>
-    <div className="absolute top-[1px] left-[89.9px] whitespace-pre-wrap inline-block w-[273px] h-[35px]">
-      <select className="absolute top-[0px] left-[0px] bg-white w-[274px] h-[35px] border border-gray-300 rounded-md border-none" onChange={handleLocationChange} disabled={!selectedCompany}>
+    <div className="w-[364.9px] relative h-9 flex items-center">
+      <div className=" left-[0px] text-darkslategray inline-block w-[98.1px]">Location:</div>
+      <div className=" left-[90.9px] w-[274px] h-[35px]">
+        <img className=" left-[249px] w-[11px] h-[11px] object-contain" alt="" src="/polygon-1.svg" />
+      </div>
+      <div className=" left-[89.9px] whitespace-pre-wrap inline-block w-[273px] h-[35px]">
+        <select className=" left-[0px] bg-white w-[274px] h-[35px] border border-gray-300 rounded-md border-none" onChange={handleLocationChange} disabled={!selectedCompany}>
           <option value="">Select Your Location</option>
-          {locations.map((location)=> (
+          {locations.map((location) => (
             <option key={location.id} value={location.id}>{location.name}</option>
           ))}
-      </select>
+        </select>
+      </div>
     </div>
-    <div className="absolute top-[4px] left-[0px] text-darkslategray inline-block w-[98.1px]">Location:</div>
-  </div>
   );
-  
+
 };
 
 export default LocationSelect;
+
 
 

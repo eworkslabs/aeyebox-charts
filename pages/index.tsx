@@ -22,8 +22,8 @@ export default function Home() {
 
   useEffect(() => {
     const fetchTelemetries = async function getData() {
-      console.log("selectedMachine", selectedMachine);
-      const data = await fetch(`http://localhost:3000/api/telemetries?date=${selectedDate}&machines=${selectedMachine.map((machine) => machine.value)}`).then((res) => res.json());
+   console.log(typeof selectedDate, selectedDate, new Date (selectedDate));
+      const data = await fetch(`http://localhost:3000/api/telemetries?date=${selectedDate.getFullYear()}-${selectedDate.getMonth().toString().padStart(2,"0")}-${selectedDate.getDay().toString().padStart(2,"0")}&machines=${selectedMachine.map((machine) => machine.value)}`).then((res) => res.json());
 
       console.log(selectedDate);
 
@@ -328,7 +328,7 @@ export default function Home() {
             <label className="pr-4 ml-[3px]" htmlFor="Calendar">
               Date:
             </label>
-            <DatePicker selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+            <DatePicker  selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
           </div>
           <div className="Charts">
             <Chart options={countOptions} series={countsSeries} type="line" height={350} width={1500} />
