@@ -68,7 +68,6 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
       {kpis.map((item, index) => (
         <div key={item.name}  className=" flex flex-row gap-5 font-murecho">
           {item.name} 
-          {/* <div className=" bg-silver w-[1865px] h-[35px]" /> */}
           <div className=" text-lg  w-24 h-7">
             <p className="m-0">KPIs</p>
           </div>
@@ -98,14 +97,14 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
             <p className="m-0">{item.data.stops}</p>
           </div>
 
-          <div className=" box-border w-[1866px] h-px border-t-[1px] border-solid border-silver" />
+          <div className=" box-border h-full  border-t-[1px] border-solid border-silver" />
         </div>
       ))}
 
-      <div className="Charts">
-        <Chart options={countOptions} series={countsSeries} type="line" height={350} width={1250}  />
-        <Chart options={speedOptions} series={speedsSeries} type="area" height={350} width={1250}  />
-        <Chart options={stopsOptions} series={stopsSeries} type="bar" height={350} width={1250}  />
+      <div className="Charts h-full">
+        <Chart options={countOptions} series={countsSeries} type="line" height={350}   />
+        <Chart options={speedOptions} series={speedsSeries} type="area" height={350}   />
+        <Chart options={stopsOptions} series={stopsSeries} type="bar" height={350}   />
       </div>
     </div>
   );
