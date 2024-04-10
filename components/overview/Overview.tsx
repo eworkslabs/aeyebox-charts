@@ -24,7 +24,7 @@ const EdashExport: NextPage = () => {
       <div className="  h-[213px] flex flex-col  items-start justify-start gap-[23px]   text-lg text-gray">
 
         <div className=" pl-8 pt-[45px] w-[1147px] relative h-9">
-          <div className="bg-white w-[1147px] h-[35px] whitespace-pre-wrap inline-block">{`    > type or say your prompt`}</div>
+          <div className="bg-white w-[1147px] h-[35px] whitespace-pre-wrap inline-block text-left">{`    > type or say your prompt`}</div>
         </div>
 
         <div className=" pl-8 text-3xl font-medium text-black whitespace-pre-wrap text-left">

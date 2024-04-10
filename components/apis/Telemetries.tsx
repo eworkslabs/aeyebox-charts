@@ -65,8 +65,8 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
 
   return (
     <div>
-      <table className="w-full table-fixed">
-            <thead className="bg-silver pt-5 text-zinc-600 ">
+      <table className="w-full pt-7 table-fixed">
+            <thead className="bg-[#2F2F2F]  text-slate-50 ">
               <tr>
                 <th>KPIs</th>
                 <th>Count</th>
@@ -76,20 +76,20 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
               </tr>
             </thead>
             <tbody className="text-black pt-5">
-        {kpis.map((item) => (
+        {kpis.map((item, index) => (
           <>
-              <tr>
-                <td>{item.name}</td>
-                <td>{item.data.counts}</td>
-                <td>{item.data.lows}</td>
-                <td>{item.data.highs}</td>
-                <td>{item.data.stops}</td>
+              <tr className="bg-silver">
+                <td style={{ backgroundColor: item.color }}>{item.name}</td>
+                <td style={{ backgroundColor: item.color }}>{item.data.counts}</td>
+                <td style={{ backgroundColor: item.color }}>{item.data.lows}</td>
+                <td style={{ backgroundColor: item.color }}>{item.data.highs}</td>
+                <td style={{ backgroundColor: item.color }}>{item.data.stops}</td>
               </tr>
           </>
         ))}
         </tbody>
       </table>
-      <div className="w-full mt-9">
+      <div className="w-full mt-10">
         <Chart options={countOptions} series={countsSeries} type="line" height={350} />
         <Chart options={speedOptions} series={speedsSeries} type="area" height={350} />     
         <Chart options={stopsOptions} series={stopsSeries} type="bar" height={350} />
