@@ -22,8 +22,11 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
       try {
         console.log(typeof selectedDate, selectedDate, new Date(selectedDate));
 
+        // const date = `${selectedDate.getFullYear()}-${selectedDate.getMonth().toString().padStart(2, "0")}-${selectedDate.getDay().toString().padStart(2, "0")}`;
+        const date = selectedDate.toISOString().split('T')[0];
+
         const machinesQuery = selectedMachines.map((machine) => machine.value).join(",");
-        const response = await fetch(`http://localhost:3000/api/telemetries?date=${selectedDate.getFullYear()}-${selectedDate.getMonth().toString().padStart(2, "0")}-${selectedDate.getDay().toString().padStart(2, "0")}&machines=${machinesQuery}`);
+        const response = await fetch(`http://localhost:3000/api/telemetries?date=${date}&machines=${machinesQuery}`);
 
         const data = await response.json();
 
@@ -50,6 +53,11 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
           color: item.color,
           data: item.kpis,
         }));
+
+        const colors = data.map((item: any) => (item.color));
+        console.log(colors);
+        countOptions.colors = colors; // nao funciona pq eh const
+
         setKpis(kpisData);
       } catch (error) {
         console.error("Error fetching telemetries:", error);

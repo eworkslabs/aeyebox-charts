@@ -10,9 +10,9 @@ export default function MyDatePicker({ selectedDate, setSelectedDate }: any) {
 
 
   const handleDateChange = (date: any) => {
-    setSelectedDate(date)
-    console.log (selectedDate, "MyDatePicker") ;
-    
+    setSelectedDate(selectedDate.toISOString().split('T')[0])
+    console.log(selectedDate, "MyDatePicker");
+    console.log(selectedDate.toISOString().split('T')[0]);
   };
 
   return (

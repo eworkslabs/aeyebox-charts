@@ -2,14 +2,14 @@ import jsonData1 from "@/data/telemetries/1.json"
 import jsonData2 from "@/data/telemetries/2.json"
 import jsonData3 from "@/data/telemetries/3.json"
 
-export const colorskpis = [jsonData1.color, jsonData2.color, jsonData3.color];
+export const colorskpis = []; //[jsonData1.color, jsonData2.color, jsonData3.color];
 
 export const xaxis = {
   categories: ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
 };
 
 export const countOptions = {
-  colors: colorskpis,
+  colors: [],
   tooltip: {
     enabled: true,
   },
@@ -47,7 +47,7 @@ export const speedOptions = {
     offsetX: 8,
   },
   xaxis,
-  colors: colorskpis,
+  colors: [],
 };
 
 export const stopsOptions = {
@@ -61,7 +61,7 @@ export const stopsOptions = {
     offsetX: 8,
   },
   xaxis,
-  colors: colorskpis,
+  colors: [],
   chart: {
     stacked: true,
   },
