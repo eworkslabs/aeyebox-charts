@@ -15,9 +15,7 @@ const EdashExport: NextPage = () => {
   const [selectedLine, setSelectedLine] = useState<number | undefined>(undefined);
   const [selectedMachines, setSelectedMachines] = useState<{ value: number; label: string }[]>([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [machines, setMachines] = useState([]);
-  const [companies, setCompanies] = useState<any[]>([]);
-
+  
 
   return (
     <div className="bg-[#D9D9D9] flex-1 w-full relative h-[1649px] overflow-hidden text-center text-mid text-darkslategray font-murecho">
@@ -27,7 +25,7 @@ const EdashExport: NextPage = () => {
           <div className="bg-white w-[1147px] h-[35px] whitespace-pre-wrap inline-block text-left">{`    > type or say your prompt`}</div>
         </div>
 
-        <div className=" pl-8 text-3xl font-medium text-black whitespace-pre-wrap text-left">
+        <div className=" pl-8 text-3xl font-medium text-black whitespace-pre-wrap text-left">  
           → Overview
         </div>
 
