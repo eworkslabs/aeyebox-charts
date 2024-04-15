@@ -26,7 +26,7 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
         const date = selectedDate.toISOString().split('T')[0];
 
         const machinesQuery = selectedMachines.map((machine) => machine.value).join(",");
-        const response = await fetch(`http://localhost:3000/api/telemetries?date=${date}&machines=${machinesQuery}`);
+        const response = await fetch(`/api/telemetries?date=${date}&machines=${machinesQuery}`);
 
         const data = await response.json();
 

@@ -16,7 +16,7 @@ const LocationSelect: React.FC<LocationSelectProps> = ({ selectedCompany, onSele
 
   const fetchLocations = async (companyId: number) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/locations?company=${companyId}`);
+      const response = await fetch(`/api/locations?company=${companyId}`);
       const data = await response.json();
       setLocations(data);
     } catch (error) {
