@@ -36,15 +36,16 @@ const LineSelect: React.FC<LineSelectProps> = ({ selectedPlant, onSelectLine }) 
         <img className=" left-[249px] w-[11px] h-[11px] object-contain" alt="" src="/polygon-1.svg" />
       </div>
       <div className=" left-[98px] whitespace-pre-wrap inline-block w-[273px] h-[35px]">
-        <select className=" left-[0px] bg-white w-[274px] h-[35px] border border-gray-300 rounded-md border-none" onChange={handleLineChange} disabled={!selectedPlant} >
+        <select className=" left-[0px] bg-white w-[274px] h-[35px] border border-gray-300 rounded-md border-none" onChange={handleLineChange} disabled={!selectedPlant}>
           <option value="">Select Your Line</option>
           {lines.map((line) => (
-            <option key={line.id} value={line.id}>{line.name}</option>
+            <option key={line.id} value={line.id}>
+              {line.name}
+            </option>
           ))}
         </select>
       </div>
     </div>
-
   );
 };
 

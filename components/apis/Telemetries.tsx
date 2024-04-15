@@ -23,7 +23,7 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
         console.log(typeof selectedDate, selectedDate, new Date(selectedDate));
 
         // const date = `${selectedDate.getFullYear()}-${selectedDate.getMonth().toString().padStart(2, "0")}-${selectedDate.getDay().toString().padStart(2, "0")}`;
-        const date = selectedDate.toISOString().split('T')[0];
+        const date = selectedDate.toISOString().split("T")[0];
 
         const machinesQuery = selectedMachines.map((machine) => machine.value).join(",");
         const response = await fetch(`/api/telemetries?date=${date}&machines=${machinesQuery}`);
@@ -54,7 +54,7 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
           data: item.kpis,
         }));
 
-        const colors = data.map((item: any) => (item.color));
+        const colors = data.map((item: any) => item.color);
         console.log(colors);
         countOptions.colors = colors; // nao funciona pq eh const
 
@@ -74,18 +74,18 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
   return (
     <div>
       <table className="w-full pt-7 table-fixed">
-            <thead className="bg-[#2F2F2F]  text-slate-50 ">
-              <tr>
-                <th>KPIs</th>
-                <th>Count</th>
-                <th>Low/s</th>
-                <th>Highs/s</th>
-                <th>Stop</th>
-              </tr>
-            </thead>
-            <tbody className="text-black pt-5">
-        {kpis.map((item, index) => (
-          <>
+        <thead className="bg-[#2F2F2F]  text-slate-50 ">
+          <tr>
+            <th>KPIs</th>
+            <th>Count</th>
+            <th>Low/s</th>
+            <th>Highs/s</th>
+            <th>Stop</th>
+          </tr>
+        </thead>
+        <tbody className="text-black pt-5">
+          {kpis.map((item, index) => (
+            <>
               <tr className="bg-silver">
                 <td style={{ backgroundColor: item.color }}>{item.name}</td>
                 <td style={{ backgroundColor: item.color }}>{item.data.counts}</td>
@@ -93,21 +93,17 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
                 <td style={{ backgroundColor: item.color }}>{item.data.highs}</td>
                 <td style={{ backgroundColor: item.color }}>{item.data.stops}</td>
               </tr>
-          </>
-        ))}
+            </>
+          ))}
         </tbody>
       </table>
       <div className="w-full mt-10">
         <Chart options={countOptions} series={countsSeries} type="line" height={350} />
-        <Chart options={speedOptions} series={speedsSeries} type="area" height={350} />     
+        <Chart options={speedOptions} series={speedsSeries} type="area" height={350} />
         <Chart options={stopsOptions} series={stopsSeries} type="bar" height={350} />
       </div>
     </div>
-
-
-
-  )
+  );
 };
-
 
 export default Telemetries;

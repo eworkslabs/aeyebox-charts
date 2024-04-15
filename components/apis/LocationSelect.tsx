@@ -39,16 +39,14 @@ const LocationSelect: React.FC<LocationSelectProps> = ({ selectedCompany, onSele
         <select className=" left-[0px] bg-white w-[274px] h-[35px] border border-gray-300 rounded-md border-none" onChange={handleLocationChange} disabled={!selectedCompany}>
           <option value="">Select Your Location</option>
           {locations.map((location) => (
-            <option key={location.id} value={location.id}>{location.name}</option>
+            <option key={location.id} value={location.id}>
+              {location.name}
+            </option>
           ))}
         </select>
       </div>
     </div>
   );
-
 };
 
 export default LocationSelect;
-
-
-

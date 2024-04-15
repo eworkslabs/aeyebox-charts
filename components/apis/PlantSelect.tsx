@@ -39,7 +39,9 @@ const PlantSelect: React.FC<PlantSelectProps> = ({ selectedLocation, onSelectPla
         <select className=" left-[0px] bg-white w-[274px] h-[35px] border border-gray-300 rounded-md border-none" onChange={handlePlantChange} disabled={!selectedLocation}>
           <option value="">Select Your Plant</option>
           {plants.map((plant) => (
-            <option key={plant.id} value={plant.id}>{plant.name}</option>
+            <option key={plant.id} value={plant.id}>
+              {plant.name}
+            </option>
           ))}
         </select>
       </div>
@@ -48,7 +50,3 @@ const PlantSelect: React.FC<PlantSelectProps> = ({ selectedLocation, onSelectPla
 };
 
 export default PlantSelect;
-
-
-
-

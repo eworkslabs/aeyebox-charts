@@ -12,7 +12,7 @@ const CompanySelect: React.FC<CompanySelectProps> = ({ onSelectCompany }) => {
   }, []);
 
   const fetchCompanies = async () => {
-    console.log(process.env, 'clientSide');
+    console.log(process.env, "clientSide");
     try {
       const response = await fetch(`/api/companies/custom`);
       const data = await response.json();
@@ -28,7 +28,6 @@ const CompanySelect: React.FC<CompanySelectProps> = ({ onSelectCompany }) => {
   };
 
   return (
-
     <div className="w-[371px] relative h-9 flex items-center">
       <div className=" left-[0px] text-darkslategray inline-block w-[98.1px]">Company:</div>
       <div className=" left-[97px] w-[274px] h-[35px]">
@@ -38,15 +37,14 @@ const CompanySelect: React.FC<CompanySelectProps> = ({ onSelectCompany }) => {
         <select className="left-[0px] bg-white w-[274px] h-[35px] border border-gray-300 rounded-md border-none" onChange={handleCompanyChange}>
           <option>Select Your Company</option>
           {companies.map((company) => (
-            <option key={company.id} value={company.id}>{company.name}</option>
+            <option key={company.id} value={company.id}>
+              {company.name}
+            </option>
           ))}
         </select>
       </div>
     </div>
-
   );
 };
 
 export default CompanySelect;
-
-
