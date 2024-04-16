@@ -27,7 +27,6 @@ const MachineSelect: React.FC<MachineSelectProps> = ({ selectedLines, onSelectMa
           }));
           setMachines(machineOptions);
         } else {
-
           setMachines([]);
           onSelectMachine([]);
         }
@@ -48,5 +47,3 @@ const MachineSelect: React.FC<MachineSelectProps> = ({ selectedLines, onSelectMa
 };
 
 export default MachineSelect;
-
-

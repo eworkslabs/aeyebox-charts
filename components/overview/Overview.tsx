@@ -15,19 +15,15 @@ const EdashExport: NextPage = () => {
   const [selectedLine, setSelectedLine] = useState<number | undefined>(undefined);
   const [selectedMachines, setSelectedMachines] = useState<{ value: number; label: string }[]>([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  
 
   return (
     <div className="bg-[#D9D9D9] flex-1 w-full relative h-[1649px] overflow-hidden text-center text-mid text-darkslategray font-murecho">
       <div className="  h-[213px] flex flex-col  items-start justify-start gap-[23px]   text-lg text-gray">
-
         <div className=" pl-8 pt-[45px] w-[1147px] relative h-9">
           <div className="bg-white w-[1147px] h-[35px] whitespace-pre-wrap inline-block text-left">{`    > type or say your prompt`}</div>
         </div>
 
-        <div className=" pl-8 text-3xl font-medium text-black whitespace-pre-wrap text-left">  
-          → Overview
-        </div>
+        <div className=" pl-8 text-3xl font-medium text-black whitespace-pre-wrap text-left">→ Overview</div>
 
         <div className="SelectLine1 flex flex-row gap-6 pl-8">
           <CompanySelect onSelectCompany={setSelectedCompany} />
