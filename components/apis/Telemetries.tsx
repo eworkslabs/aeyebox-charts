@@ -8,24 +8,27 @@ const Chart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }[] }> = ({ selectedMachines }) => {
+const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }[], selectedDate: any }> = ({ selectedMachines, selectedDate }) => {
   const [loading, setLoading] = useState(true);
   const [countsSeries, setCountSeries] = useState<any[]>([]);
   const [speedsSeries, setSpeedSeries] = useState<any[]>([]);
   const [stopsSeries, setStopSeries] = useState<any[]>([]);
   const [kpis, setKpis] = useState<any[]>([]);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [nCountOptions, setNCountOptions] = useState<any>({});
+  const [nSpeedOptions, setNSpeedOptions] = useState<any>({});
+  const [nStopsOptions, setNStopOptions] = useState<any>({});
 
   useEffect(() => {
     const fetchTelemetries = async () => {
       setLoading(true);
       try {
-        console.log(typeof selectedDate, selectedDate, new Date(selectedDate));
 
-        // const date = `${selectedDate.getFullYear()}-${selectedDate.getMonth().toString().padStart(2, "0")}-${selectedDate.getDay().toString().padStart(2, "0")}`;
-        const date = selectedDate.toISOString().split("T")[0];
+        const date = (!selectedDate ? new Date() : new Date(selectedDate)).toISOString().split("T")[0];
 
         const machinesQuery = selectedMachines.map((machine) => machine.value).join(",");
+
+        console.log(`/api/telemetries?date=${date}&machines=${machinesQuery}`);
+
         const response = await fetch(`/api/telemetries?date=${date}&machines=${machinesQuery}`);
 
         const data = await response.json();
@@ -55,8 +58,11 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
         }));
 
         const colors = data.map((item: any) => item.color);
-        console.log(colors);
-        countOptions.colors = colors; // nao funciona pq eh const
+        setNCountOptions({ ...countOptions, ...{ colors } });
+        setNStopOptions({ ...stopsOptions, ... { colors } });
+        setNSpeedOptions({ ...speedOptions, ...{ colors } });
+
+        // console.log('options', nCountOptions, nSpeedOptions, nStopsOptions);
 
         setKpis(kpisData);
       } catch (error) {
@@ -98,9 +104,9 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
         </tbody>
       </table>
       <div className="w-full mt-10">
-        <Chart options={countOptions} series={countsSeries} type="line" height={350} />
-        <Chart options={speedOptions} series={speedsSeries} type="area" height={350} />
-        <Chart options={stopsOptions} series={stopsSeries} type="bar" height={350} />
+        <Chart options={nCountOptions} series={countsSeries} type="line" height={350} />
+        <Chart options={nSpeedOptions} series={speedsSeries} type="area" height={350} />
+        <Chart options={nStopsOptions} series={stopsSeries} type="bar" height={350} />
       </div>
     </div>
   );

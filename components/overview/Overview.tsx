@@ -40,7 +40,7 @@ const EdashExport: NextPage = () => {
           <DatePicker selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
         </div>
         <div className="w-full">
-          <Telemetries selectedMachines={selectedMachines} />
+          <Telemetries selectedMachines={selectedMachines} selectedDate={selectedDate} />
         </div>
       </div>
     </div>

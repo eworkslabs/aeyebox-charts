@@ -3,9 +3,9 @@ import fs from "fs";
 import axios from "axios";
 
 export default async function handler(_req: NextApiRequest, res: NextApiResponse<[]>) {
-  //const file = fs.readFileSync(  __dirname + '/../../../../data/locations/' + _req.query.company + '.json', 'utf8');
-  //const data = JSON.parse(file);
-
+  const file = fs.readFileSync(__dirname + '/../../../../data/locations/' + _req.query.company_id + '.json', 'utf8');
+  const data = JSON.parse(file);
+  return res.status(200).json(data);
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${process.env.API_TOKEN}`,

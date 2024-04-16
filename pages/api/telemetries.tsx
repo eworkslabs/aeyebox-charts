@@ -6,7 +6,6 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse<[]>) 
 
   let machines: string[] = [];
 
-  console.log("is machineIds", machineIds);
   if (machineIds.length) {
     machineIds.map((id: any) => {
       if (!id) return;
@@ -16,8 +15,5 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse<[]>) 
     });
   }
 
-  console.log("machines", machines);
-
-  // data.filter((machine) => machine.idvalue ==  )
   res.status(200).json(machines);
 }
