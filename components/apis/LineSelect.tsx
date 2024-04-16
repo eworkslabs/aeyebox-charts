@@ -16,7 +16,7 @@ const LineSelect: React.FC<LineSelectProps> = ({ selectedPlant, onSelectLine }) 
 
   const fetchLines = async (plantId: number) => {
     try {
-      const response = await fetch(`/api/lines?plants=${plantId}`);
+      const response = await fetch(`/api/lines?plant_id=${plantId}`);
       const data = await response.json();
       setLines(data);
     } catch (error) {

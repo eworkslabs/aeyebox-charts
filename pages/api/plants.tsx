@@ -1,12 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import fs from "fs";
 import axios from "axios";
 
-export default function handler(_req: NextApiRequest, res: NextApiResponse<[]>) {
-  const file = fs.readFileSync(  __dirname + '/../../../../data/plants/' + _req.query.locations + '.json', 'utf8');
-  const data = JSON.parse(file);
+export default async function handler(_req: NextApiRequest, res: NextApiResponse<[]>) {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${process.env.API_TOKEN}`,
+  };
 
-  // _req.query.location_id;
+  const response = await axios.get(`${process.env.API_URL}/plants/custom?location_id=${_req.query.location_id}`, {
+    headers: headers,
+  });
 
-  res.status(200).json(data);
+  res.status(200).json(response.data);
 }

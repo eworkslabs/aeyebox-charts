@@ -1,10 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import fs from "fs";
-//import type { Todos } from "../../interfaces";
+import axios from "axios";
 
-export default function handler(_req: NextApiRequest, res: NextApiResponse<[]>) {
-  const file = fs.readFileSync(__dirname + "/../../../../data/machines/" + _req.query.lines + ".json", "utf8");
-  const data = JSON.parse(file);
+export default async function handler(_req: NextApiRequest, res: NextApiResponse<[]>) {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${process.env.API_TOKEN}`,
+  };
 
-  res.status(200).json(data);
+  const response = await axios.get(`${process.env.API_URL}/machines/custom?line_id=${_req.query.line_id}`, {
+    headers: headers,
+  });
+
+  res.status(200).json(response.data);
 }

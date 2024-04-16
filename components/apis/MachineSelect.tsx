@@ -19,7 +19,7 @@ const MachineSelect: React.FC<MachineSelectProps> = ({ selectedLines, onSelectMa
       try {
         if (selectedLines.length > 0) {
           const lineIds = selectedLines.join(",");
-          const response = await fetch(`/api/machines?lines=${lineIds}`);
+          const response = await fetch(`/api/machines?line_id=${lineIds}`);
           const data: Machine[] = await response.json();
           const machineOptions = data.map((machine) => ({
             value: machine.id,

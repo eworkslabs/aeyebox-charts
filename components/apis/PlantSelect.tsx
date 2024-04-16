@@ -16,7 +16,7 @@ const PlantSelect: React.FC<PlantSelectProps> = ({ selectedLocation, onSelectPla
 
   const fetchPlants = async (locationId: number) => {
     try {
-      const response = await fetch(`/api/plants?locations=${locationId}`);
+      const response = await fetch(`/api/plants?location_id=${locationId}`);
       const data = await response.json();
       setPlants(data);
     } catch (error) {
