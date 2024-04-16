@@ -1,7 +1,7 @@
 {
     "name": "Sensor 3",
     "idvalue": 3,
-    "color": "#ffd452",
+    "color": "#686666",
     "kpis": {
         "counts": 411,
         "lows": 678,
