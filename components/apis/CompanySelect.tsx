@@ -12,7 +12,6 @@ const CompanySelect: React.FC<CompanySelectProps> = ({ onSelectCompany }) => {
   }, []);
 
   const fetchCompanies = async () => {
-    console.log(process.env, "clientSide");
     try {
       const response = await fetch(`/api/companies`);
       const data = await response.json();

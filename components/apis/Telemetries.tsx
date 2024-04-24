@@ -27,8 +27,6 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
 
         const machinesQuery = selectedMachines.map((machine) => machine.value).join(",");
 
-        console.log(`/api/telemetries?date=${date}&machines=${machinesQuery}`);
-
         const response = await fetch(`/api/telemetries?date=${date}&machines=${machinesQuery}`);
 
         const data = await response.json();
@@ -57,12 +55,13 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
           data: item.kpis,
         }));
 
+        // Eu criei 3 variaveis de opcoes para o componente de grafico;
+        // Para receber os dados da API fazendo um merge com as colores
+        
         const colors = data.map((item: any) => item.color);
         setNCountOptions({ ...countOptions, ...{ colors } });
         setNStopOptions({ ...stopsOptions, ...{ colors } });
         setNSpeedOptions({ ...speedOptions, ...{ colors } });
-
-        // console.log('options', nCountOptions, nSpeedOptions, nStopsOptions);
 
         setKpis(kpisData);
       } catch (error) {
@@ -74,8 +73,6 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
 
     fetchTelemetries();
   }, [selectedMachines, selectedDate]);
-
-  console.log(kpis);
 
   return (
     <div>

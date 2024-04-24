@@ -10,7 +10,7 @@ const Chart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-interface HomePageProps {}
+interface HomePageProps { }
 
 export default function Home() {
   const [selectedMachine, setSelectedMachine] = useState([]);
@@ -22,10 +22,9 @@ export default function Home() {
 
   useEffect(() => {
     const fetchTelemetries = async function getData() {
-   console.log(typeof selectedDate, selectedDate, new Date (selectedDate));
-      const data = await fetch(`http://localhost:3000/api/telemetries?date=${selectedDate.getFullYear()}-${selectedDate.getMonth().toString().padStart(2,"0")}-${selectedDate.getDay().toString().padStart(2,"0")}&machines=${selectedMachine.map((machine) => machine.value)}`).then((res) => res.json());
 
-      console.log(selectedDate);
+      const data = await fetch(`/api/telemetries?date=${selectedDate.getFullYear()}-${selectedDate.getMonth().toString().padStart(2, "0")}-${selectedDate.getDay().toString().padStart(2, "0")}&machines=${selectedMachine.map((machine) => machine.value)}`).then((res) => res.json());
+
 
       const counts = data.map((item: any) => {
         return {
@@ -233,12 +232,8 @@ export default function Home() {
   };
 
   const handleMachineChange = (selectedOption: any) => {
-    console.log(selectedOption);
     setSelectedMachine(selectedOption);
-    console.log("resultado  selected machine", selectedOption);
   };
-
-  console.log("resultado machine", selectedMachine);
 
   return (
     <div>
@@ -328,7 +323,7 @@ export default function Home() {
             <label className="pr-4 ml-[3px]" htmlFor="Calendar">
               Date:
             </label>
-            <DatePicker  selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
+            <DatePicker selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
           </div>
           <div className="Charts">
             <Chart options={countOptions} series={countsSeries} type="line" height={350} width={1500} />

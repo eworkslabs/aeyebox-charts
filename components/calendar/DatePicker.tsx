@@ -8,9 +8,7 @@ interface Props {
 
 export default function MyDatePicker({ selectedDate, setSelectedDate }: any) {
   const handleDateChange = (date: any) => {
-    console.log(date, "MyDatePicker");
     setSelectedDate(date);
-
   };
 
   return (
