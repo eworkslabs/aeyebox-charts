@@ -1,3 +1,4 @@
+"use client";
 import React, { Fragment, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import DatePicker from "@/components/calendar/DatePicker";
@@ -8,7 +9,7 @@ const Chart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }[], selectedDate: any }> = ({ selectedMachines, selectedDate }) => {
+const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }[]; selectedDate: any }> = ({ selectedMachines, selectedDate }) => {
   const [loading, setLoading] = useState(true);
   const [countsSeries, setCountSeries] = useState<any[]>([]);
   const [speedsSeries, setSpeedSeries] = useState<any[]>([]);
@@ -22,7 +23,6 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
     const fetchTelemetries = async () => {
       setLoading(true);
       try {
-
         const date = (!selectedDate ? new Date() : new Date(selectedDate)).toISOString().split("T")[0];
 
         const machinesQuery = selectedMachines.map((machine) => machine.value).join(",");
@@ -59,7 +59,7 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
 
         const colors = data.map((item: any) => item.color);
         setNCountOptions({ ...countOptions, ...{ colors } });
-        setNStopOptions({ ...stopsOptions, ... { colors } });
+        setNStopOptions({ ...stopsOptions, ...{ colors } });
         setNSpeedOptions({ ...speedOptions, ...{ colors } });
 
         // console.log('options', nCountOptions, nSpeedOptions, nStopsOptions);
@@ -91,15 +91,13 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
         </thead>
         <tbody className="text-black pt-5">
           {kpis.map((item, index) => (
-            <>
-              <tr className="bg-silver">
-                <td style={{ backgroundColor: item.color }}>{item.name}</td>
-                <td style={{ backgroundColor: item.color }}>{item.data.counts}</td>
-                <td style={{ backgroundColor: item.color }}>{item.data.lows}</td>
-                <td style={{ backgroundColor: item.color }}>{item.data.highs}</td>
-                <td style={{ backgroundColor: item.color }}>{item.data.stops}</td>
-              </tr>
-            </>
+            <tr className="bg-silver" key={index}>
+              <td style={{ backgroundColor: item.color }}>{item.name}</td>
+              <td style={{ backgroundColor: item.color }}>{item.data.counts}</td>
+              <td style={{ backgroundColor: item.color }}>{item.data.lows}</td>
+              <td style={{ backgroundColor: item.color }}>{item.data.highs}</td>
+              <td style={{ backgroundColor: item.color }}>{item.data.stops}</td>
+            </tr>
           ))}
         </tbody>
       </table>

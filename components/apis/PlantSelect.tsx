@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 
 interface PlantSelectProps {
@@ -33,7 +34,6 @@ const PlantSelect: React.FC<PlantSelectProps> = ({ selectedLocation, onSelectPla
     <div className="w-[364.9px] relative h-9 flex items-center">
       <div className="left-[5px] text-darkslategray inline-block w-[98.1px]">Plant:</div>
       <div className=" left-[90.9px] w-[274px] h-[35px]">
-        <img className=" left-[249px] w-[11px] h-[11px] object-contain" alt="" src="/polygon-1.svg" />
       </div>
       <div className=" left-[89.9px] whitespace-pre-wrap inline-block w-[273px] h-[35px]">
         <select className=" left-[0px] bg-white w-[274px] h-[35px] border border-gray-300 rounded-md border-none" onChange={handlePlantChange} disabled={!selectedLocation}>
