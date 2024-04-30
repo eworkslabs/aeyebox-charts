@@ -7,9 +7,31 @@ export default async function handler(_req: NextApiRequest, res: NextApiResponse
     Authorization: `Bearer ${process.env.API_TOKEN}`,
   };
 
-  const response = await axios.get(`${process.env.API_URL}/companies/custom`, {
-    headers: headers,
-  });
+  if (_req.method === 'POST') {
+    const response = await axios.post(`${process.env.API_URL}/companies`, {
+      name: _req.body.name
+    }, {
+      headers,
+    });
 
-  res.status(200).json(response.data);
+    return res.status(200).json(response.data);
+  } else if (_req.method === 'PUT') {
+    const response = await axios.put(`${process.env.API_URL}/companies/${_req.body.id}`, {
+      id: _req.body.id,
+      name: _req.body.name
+    }, {
+      headers,
+    });
+
+    return res.status(200).json(response.data);
+  } else if (_req.method === 'GET') {
+    const response = await axios.get(`${process.env.API_URL}/companies/custom`, {
+      headers,
+    });
+
+    return res.status(200).json(response.data);
+  }
+
+  res.status(405).json({ error: 'Method Not Allowed' })
+
 }
