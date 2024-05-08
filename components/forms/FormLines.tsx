@@ -4,7 +4,7 @@ import React, { useState, FormEvent } from "react";
 async function onSubmit(event: FormEvent<HTMLFormElement>) {
   event.preventDefault();
   const formData = new FormData(event.currentTarget);
-  const response = await fetch("/api/plants", {
+  const response = await fetch("/api/liness", {
     method: "POST",
     body: formData,
   });
@@ -14,7 +14,7 @@ async function onSubmit(event: FormEvent<HTMLFormElement>) {
 async function onPut(event: FormEvent<HTMLFormElement>) {
   event.preventDefault();
   const formData = new FormData(event.currentTarget);
-  const response = await fetch("/api/plants/1", {
+  const response = await fetch("/api/lines/1", {
     method: "PUT",
     body: formData,
   });

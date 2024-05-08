@@ -24,6 +24,9 @@ export default function LateralMenu() {
         <Link href="/plants" className=" flex justify-center items-center mt-5 no-underline font-light text-white">
           Plants
         </Link>
+        <Link href="/lines" className=" flex justify-center items-center mt-5 no-underline font-light text-white">
+          Lines
+        </Link>
         <Link href="/machines" className=" flex justify-center items-center mt-5 no-underline font-light text-white">
           Machines
         </Link>
