@@ -27,12 +27,17 @@ const FormMachine: NextPage = () => {
       <div className="  h-[213px] flex flex-col  items-start justify-start gap-[23px]   text-lg text-gray">
         <div>
           <form onSubmit={onSubmit}>
+            <h1>Novo</h1>
+            <label>name</label>
             <input type="text" name="name" />
             <button type="submit">Criar</button>
           </form>
 
           <form onSubmit={onPut}>
+            <h1>Editar</h1>
+            <label>id</label>
             <input type="text" name="id" />
+            <label>name</label>
             <input type="text" name="name" />
             <button type="submit">Salvar</button>
           </form>
