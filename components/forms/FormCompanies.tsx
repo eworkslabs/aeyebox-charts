@@ -4,7 +4,7 @@ import React, { useState, FormEvent } from "react";
 async function onSubmit(event: FormEvent<HTMLFormElement>) {
   event.preventDefault();
   const formData = new FormData(event.currentTarget);
-  const response = await fetch("/api/locations", {
+  const response = await fetch("/api/companies", {
     method: "POST",
     body: formData,
   });
