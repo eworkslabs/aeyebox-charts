@@ -9,7 +9,7 @@ export default async function handler(_req: NextApiRequest, res: NextApiResponse
   console.log(_req.body);
   if (_req.method === "POST") {
     const response = await axios.post(
-      `${process.env.API_URL}/companies`,
+      `${process.env.API_URL}/lines`,
       {
         name: _req.body.name,
       },
@@ -21,7 +21,7 @@ export default async function handler(_req: NextApiRequest, res: NextApiResponse
     return res.status(200).json(response.data);
   } else if (_req.method === "PUT") {
     const response = await axios.put(
-      `${process.env.API_URL}/companies/${_req.body.id}`,
+      `${process.env.API_URL}/lines/${_req.body.id}`,
       {
         id: _req.body.id,
         name: _req.body.name,
