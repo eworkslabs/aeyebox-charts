@@ -1,5 +1,5 @@
 import LateralMenu from "@/components/lateralmenu/LateralMenu";
-import FormMachine from "@/components/forms/FormMachine";
+import FormLines from "@/components/forms/FormLines";
 
 export default function FormMachines(){
   return(
@@ -9,7 +9,7 @@ export default function FormMachines(){
         <LateralMenu />
       </aside>
       <main className="flex-1 bg-[#D9D9D9] ">
-        <FormMachine/>
+        <FormLines/>
       </main>
     </div>
   </div>
