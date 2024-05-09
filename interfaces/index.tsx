@@ -1,9 +1,3 @@
-export type Todos = {
-  id: number;
-  title?: string;
-  completed?: string;
-};
-
 export type Companies = {
   id: number;
   companyid: number;
