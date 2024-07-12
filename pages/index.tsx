@@ -1,17 +1,19 @@
-import LateralMenu from "@/components/lateralmenu/LateralMenu";
+import Header from "@/components/header/Header";
+import MenuLateral from "@/components/lateralmenu/LateralMenu";
+
 import Overview from "@/components/overview/Overview";
 
-export default function HomeTeste() {
+export default function Home() {
   return (
-    <div className="h-screen flex flex-col">
-      <div className="flex flex-1">
-        <aside className="w-64 bg-[#2F2F2F]">
-          <LateralMenu />
-        </aside>
-        <main className="flex-1 bg-[#D9D9D9] ">
-          <Overview />
+    <div className="flex h-screen">
+      <MenuLateral />
+      <div className="flex flex-col w-full">
+        <Header />
+        <main className="flex-1 p-4">
+          {/* <Overview /> */}
         </main>
       </div>
     </div>
   );
 }
+
