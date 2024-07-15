@@ -5,6 +5,7 @@ import { MdOutlinePlace } from "react-icons/md";
 import { MdOutlineFactory } from "react-icons/md";
 import { MdConveyorBelt } from "react-icons/md";
 import { BiWrench } from "react-icons/bi";
+import Link from "next/link";
 
 export default function MenuLateral() {
     return (
@@ -14,27 +15,27 @@ export default function MenuLateral() {
             </div>
             <div className="mt-10 flex flex-col gap-11 text-2xl text-[#07314a] ">
                 <div className="group relative">
-                    <BiHomeAlt />
+                    <Link  href="/"><BiHomeAlt /></Link>
                     <div className="hover-effect rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2"></div>
                 </div>
                 <div className="group relative">
-                    <BiBuildings />
+                    <Link  href="/companies"><BiBuildings /></Link>
                     <div className="hover-effect rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2"></div>
                 </div>
                 <div className="group relative">
-                    <MdOutlinePlace />
+                    <Link href="/locations"><MdOutlinePlace /></Link>
                     <div className="hover-effect rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2"></div>
                 </div>
                 <div className="group relative">
-                    <MdOutlineFactory />
+                    <Link href="/lines"><MdOutlineFactory /></Link>
                     <div className="hover-effect rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2"></div>
                 </div>
                 <div className="group relative">
-                    <MdConveyorBelt />
+                    <Link href="/plants"><MdConveyorBelt /></Link>
                     <div className="hover-effect rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2"></div>
                 </div>
                 <div className="group relative">
-                    <BiWrench />
+                    <Link href="/machines"><BiWrench /></Link>
                     <div className="hover-effect rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2"></div>
                 </div>
             </div>
