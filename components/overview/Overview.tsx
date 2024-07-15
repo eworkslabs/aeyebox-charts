@@ -1,3 +1,4 @@
+import ResultsKpi from "./ResultsKpi";
 import TitleOverview from "./TitleOverview";
 import Welcome from "./Welcome";
 
@@ -9,6 +10,7 @@ export default function Overview(){
       </div>
       <div className="bg-white">
         <TitleOverview />
+        <ResultsKpi />
       </div>
     </section>
   )
