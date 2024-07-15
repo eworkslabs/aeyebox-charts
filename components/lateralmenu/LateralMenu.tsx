@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 export default function MenuLateral() {
     const router = useRouter();
 
-    const isActive = (path) => router.pathname === path;
+    const isActive = (path: string): boolean => router.pathname === path;
 
     return (
         <section className="h-screen w-20 bg-[#DFECF5] flex flex-col items-center ml-5 mt-5 mb-5 border-[#DFECF5] rounded-lg">
