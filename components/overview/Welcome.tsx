@@ -3,7 +3,7 @@ import { IoFilterSharp } from "react-icons/io5";
 
 export default function Welcome() {
     return (
-        <section className="flex items-center ml-2 mr-1 bg-[#07314a] border-[#07314a] rounded-t-3xl">
+        <section className="flex items-center bg-[#07314a] border-[#07314a] rounded-t-3xl">
             <div className="flex flex-grow p-5">
                 <h1 className="text-white text-2xl font-light">Welcome,</h1>
                 <h1 className="text-white text-2xl pl-2">(Nome do Usuário)</h1>
