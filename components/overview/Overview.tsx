@@ -1,3 +1,4 @@
+import TitleOverview from "./TitleOverview";
 import Welcome from "./Welcome";
 
 export default function Overview(){
@@ -5,6 +6,9 @@ export default function Overview(){
     <section>
       <div>
         <Welcome />
+      </div>
+      <div className="bg-white">
+        <TitleOverview />
       </div>
     </section>
   )

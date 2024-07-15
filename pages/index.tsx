@@ -1,6 +1,5 @@
 import Header from "@/components/header/Header";
 import MenuLateral from "@/components/lateralmenu/LateralMenu";
-
 import Overview from "@/components/overview/Overview";
 
 export default function Home() {
