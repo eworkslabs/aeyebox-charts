@@ -1,7 +1,3 @@
-import jsonData1 from "@/data/telemetries/1.json";
-import jsonData2 from "@/data/telemetries/2.json";
-import jsonData3 from "@/data/telemetries/3.json";
-
 export const colorskpis = []; //[jsonData1.color, jsonData2.color, jsonData3.color];
 
 export const xaxis = {
@@ -17,7 +13,6 @@ export const countOptions = {
     foreColor: "dark",
   },
   subtitle: {
-    text: "→ Counts",
     offsetY: 0,
     offsetX: 8,
     style: {
@@ -38,7 +33,6 @@ export const countOptions = {
 
 export const speedOptions = {
   subtitle: {
-    text: "→ Speed",
     style: {
       fontSize: "19px",
       fontWeight: "medium",
@@ -52,7 +46,6 @@ export const speedOptions = {
 
 export const stopsOptions = {
   subtitle: {
-    text: "→ Stops",
     style: {
       fontSize: "19px",
       fontWeight: "medium",

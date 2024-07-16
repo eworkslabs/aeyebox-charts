@@ -14,15 +14,15 @@ export default function ResultsKpi() {
               <th className="px-6 py-3 text-left text-lg font-medium">Stop</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            <tr className="bg-gray-50">
+          <tbody className="bg-white divide-y divide-gray-300">
+            <tr className="bg-slate-100">
               <td className="px-6 py-4 text-lg font-medium">Sensor 01</td>
               <td className="px-6 py-4 text-lg font-medium">123</td>
               <td className="px-6 py-4 text-lg font-medium">345</td>
               <td className="px-6 py-4 text-lg font-medium">456</td>
               <td className="px-6 py-4 text-lg font-medium">678</td>
             </tr>
-            <tr>
+            <tr className="bg-slate-100">
               <td className="px-6 py-4 text-lg font-medium">Sensor 02</td>
               <td className="px-6 py-4 text-lg font-medium">123</td>
               <td className="px-6 py-4 text-lg font-medium">345</td>

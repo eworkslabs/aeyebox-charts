@@ -5,7 +5,7 @@ import { MdApps } from "react-icons/md";
 
 export default function Header() {
     return (
-        <header className="ml-5 mt-5 mr-5 rounded-lg  bg-[#DFECF5] p-4 border-b border-[#DFECF5]">
+        <header className="ml-32 mt-5 mr-5 rounded-lg  bg-[#DFECF5] p-4 border-b border-[#DFECF5]">
             <div className="flex items-center gap-80">
                 <div className="flex">
                     <MdApps className="text-2xl text-[#07314a]" />

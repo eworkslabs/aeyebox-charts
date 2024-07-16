@@ -10,7 +10,7 @@ export default function MenuLateral() {
     const isActive = (path: string): boolean => router.pathname === path;
 
     return (
-        <section className="h-screen w-20 bg-[#DFECF5] flex flex-col items-center ml-5 mt-5 mb-5 border-[#DFECF5] rounded-lg">
+        <section className="fixed top-5 mr-40 left-5 h-[calc(100vh-40px)] w-20 bg-[#DFECF5] flex flex-col items-center rounded-lg shadow-lg">
             <div className="mt-8">
                 <Image src="/images/e..png" alt="image" height={40} width={30} />
             </div>
