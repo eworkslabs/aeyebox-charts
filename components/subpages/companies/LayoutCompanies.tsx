@@ -1,4 +1,5 @@
 import HeaderSubPage from "../../headersubpage/HeaderSubPage";
+import TableCompany from "./Tables";
 import TitleCompany from "./TitleCompany";
 
 export default function LayoutCompanies(){
@@ -9,6 +10,7 @@ export default function LayoutCompanies(){
             </div>
             <div className="bg-white">
                 <TitleCompany />
+                <TableCompany />
             </div>
         </section>
     )

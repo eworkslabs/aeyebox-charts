@@ -1,5 +1,6 @@
 import HeaderSubPage from "@/components/headersubpage/HeaderSubPage";
 import TitleLocations from "./TitleLocations";
+import TableLocations from "./TableLocations";
 
 export default function LayoutLocations(){
     return(
@@ -9,6 +10,7 @@ export default function LayoutLocations(){
             </div>
             <div className="bg-white">
                 <TitleLocations />
+                <TableLocations />
             </div>
         </section>
     )
