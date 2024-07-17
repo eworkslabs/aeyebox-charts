@@ -28,12 +28,12 @@ export default function MenuLateral() {
                     <div className={`w-1 h-8 rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2 transition-colors ${isActive('/locations') ? 'bg-[#07314a]' : 'group-hover:bg-[#07314a]'}`}></div>
                 </div>
                 <div className="group relative">
-                    <Link href="/lines"><MdOutlineFactory /></Link>
-                    <div className={`w-1 h-8 rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2 transition-colors ${isActive('/lines') ? 'bg-[#07314a]' : 'group-hover:bg-[#07314a]'}`}></div>
+                    <Link href="/plants"><MdOutlineFactory /></Link>
+                    <div className={`w-1 h-8 rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2 transition-colors ${isActive('/plants') ? 'bg-[#07314a]' : 'group-hover:bg-[#07314a]'}`}></div>
                 </div>
                 <div className="group relative">
-                    <Link href="/plants"><MdConveyorBelt /></Link>
-                    <div className={`w-1 h-8 rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2 transition-colors ${isActive('/plants') ? 'bg-[#07314a]' : 'group-hover:bg-[#07314a]'}`}></div>
+                    <Link href="/lines"><MdConveyorBelt /></Link>
+                    <div className={`w-1 h-8 rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2 transition-colors ${isActive('/lines') ? 'bg-[#07314a]' : 'group-hover:bg-[#07314a]'}`}></div>
                 </div>
                 <div className="group relative">
                     <Link href="/machines"><BiWrench /></Link>
