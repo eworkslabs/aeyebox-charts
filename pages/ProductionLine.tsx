@@ -19,6 +19,9 @@ interface ProductionLineProps {
 }
 
 const ProductionLine: React.FC<ProductionLineProps> = ({ data }) => {
+
+  if (!data?.counts) return;
+
   const formatCounts = (counts: { low: number; high: number }): string => {
     const lowPerMinute = counts.low / 60;
     const highPerMinute = counts.high / 60;
