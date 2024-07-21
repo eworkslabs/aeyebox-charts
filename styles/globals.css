@@ -1,42 +1,39 @@
-@import url("https://fonts.googleapis.com/css2?family=Murecho:wght@300;400;500;700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
 
-*
-  ::before,
-  ::after {
-    border-width: 0;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
 }
 
 body {
-  @apply leading-[normal] m-0;
+  background-color: #F0F9FF;
 }
 
-.pagesline {
-  position: relative;
-  display: grid;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: column;
-  margin-top: 0.8rem;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }
 
-.pagesline .panel1 {
-  display: flex;
-  margin-left: 1.2rem;
+.hover-effect {
+  width: 4px;
+  height: 30px; /* Ajuste a altura conforme necessário */
+  background-color: #07314a;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
-.pagesline .panel2 {
-  display: flex;
-  margin-left: 1.2rem;
-}
-
-.calendar input {
-  outline: none; 
-
-  margin-top: 1.6rem;
-  margin-left: 1.3rem;
+.group:hover .hover-effect {
+  opacity: 1;
 }
