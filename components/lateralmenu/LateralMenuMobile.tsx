@@ -1,16 +1,24 @@
 import Image from "next/image";
 import { BiHomeAlt, BiBuildings, BiWrench } from "react-icons/bi";
 import { MdOutlinePlace, MdOutlineFactory, MdConveyorBelt } from "react-icons/md";
+import { FiX } from "react-icons/fi";
 import Link from "next/link";
 import { useRouter } from 'next/router';
 
-export default function MenuLateral() {
+interface MenuLateralMobileProps {
+  toggleMenu: () => void;
+}
+
+export default function MenuLateralMobile({ toggleMenu }: MenuLateralMobileProps) {
     const router = useRouter();
 
     const isActive = (path: string): boolean => router.pathname === path;
 
     return (
-        <section className="hidden lg:flex fixed top-5 mr-40 left-5 h-[calc(100vh-40px)] w-20 bg-[#DFECF5] flex-col items-center rounded-lg shadow-lg">
+        <section className="flex top-5 left-0 h-[calc(100vh-40px)] w-20 flex-col items-center rounded-lg bg-[#DFECF5] p-4 relative">
+            <button onClick={toggleMenu} className="absolute top-2 right-2">
+                <FiX className="text-[21px] text-[#07314a]" />
+            </button>
             <div className="mt-8">
                 <Image src="/images/e..png" alt="image" height={40} width={30} />
             </div>
@@ -41,5 +49,5 @@ export default function MenuLateral() {
                 </div>
             </div>
         </section>
-    )
+    );
 }
