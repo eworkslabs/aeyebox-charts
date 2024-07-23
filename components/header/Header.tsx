@@ -26,13 +26,13 @@ export default function Header() {
                     <h1 className="hidden lg:block -ml-2">apps</h1>
                 </div>
                 <div className="flex items-center bg-white rounded-full p-4 shadow-md flex-grow">
-                    <HiOutlineMicrophone className="text-2xl " />
-                    <input type="text" placeholder="Type or say your prompt." className="outline-none w-full text-gray-600 pl-5 placeholder:text-black placeholder:text-[14px] md:placeholder:text-[14px]" />
-                    <Image src="/images/fi_7406540.png" alt="lupa" height={24} width={24} />
+                    <HiOutlineMicrophone className="text-xl" />
+                    <input type="text" placeholder="Type or say your prompt." className="outline-none w-full text-gray-600 pl-2 md:pl-5 placeholder:text-black placeholder:text-[12px] md:placeholder:text-[14px] xs:placeholder:text-[9px]" />
+                    <Image src="/images/fi_7406540.png" alt="lupa" height={19} width={19}  />
                 </div>
                 <div className="flex gap-5">
-                    <FiSun className="text-gray-400 text-2xl" />
-                    <FiLogOut className="text-red-500 text-2xl" />
+                    <FiSun className="text-gray-400 text-lg" />
+                    <FiLogOut className="text-red-500 text-lg" />
                 </div>
             </div>
             {menuOpen && (

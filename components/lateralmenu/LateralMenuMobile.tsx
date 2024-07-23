@@ -19,7 +19,7 @@ export default function MenuLateralMobile({ toggleMenu }: MenuLateralMobileProps
             <button onClick={toggleMenu} className="absolute top-2 right-2">
                 <FiX className="text-[21px] text-[#07314a]" />
             </button>
-            <div className="mt-8">
+            <div className="mt-8 pl-4">
                 <Image src="/images/e..png" alt="image" height={40} width={30} />
             </div>
             <div className="mt-10 flex flex-col gap-11 text-2xl text-[#07314a]">
