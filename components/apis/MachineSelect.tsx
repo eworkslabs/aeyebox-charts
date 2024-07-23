@@ -40,7 +40,7 @@ const MachineSelect: React.FC<MachineSelectProps> = ({ selectedLines, onSelectMa
   }, [selectedLines, onSelectMachine]);
 
   return (
-    <div className="w-[765px] h-7 flex text-darkslategray">
+    <div className="h-7 flex text-darkslategray">
       <div className=" mt-1 inline-block w-[98.1px]">Machines:</div>
       <Select className=" text-left ml-2 text-gray whitespace-pre-wrap w-[720px] h-[34px]" isDisabled={selectedLines.length < 1} options={machines} onChange={onSelectMachine} isMulti  instanceId={"selSelect1"} />
     </div>
