@@ -14,7 +14,7 @@ export default function Welcome() {
     <>
       <section className="flex items-center bg-[#07314a] border-[#07314a] rounded-t-3xl">
         <div className="p-5 ml-auto">
-          <button onClick={togglePopup} className="bg-[#cfe600] border-[#cfe600] text-[#07314a] p-2 justify-center items-center rounded-xl flex">
+          <button onClick={togglePopup} className="bg-[#cfe600] border-[#cfe600] text-[#07314a] px-12 p-2 justify-center items-center rounded-xl flex">
             <IoFilterSharp className="text-xl" />
             <h1 className="text-lg lg:text-xl 2xl:text-xl pl-2">Filters</h1>
           </button>
