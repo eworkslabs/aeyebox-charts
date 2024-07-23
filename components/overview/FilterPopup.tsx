@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import MachineSelect from '../apis/MachineSelect';
 
 interface RegisterPopupProps {
   isOpen: boolean;
@@ -7,6 +8,8 @@ interface RegisterPopupProps {
 
 const FiltersPopup: React.FC<RegisterPopupProps> = ({ isOpen, onClose }) => {
   const [activeTab, setActiveTab] = useState('Company');
+  const [selectedLine, setSelectedLine] = useState<number | undefined>(undefined);
+  const [selectedMachines, setSelectedMachines] = useState<{ value: number; label: string }[]>([]);
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -42,7 +45,7 @@ const FiltersPopup: React.FC<RegisterPopupProps> = ({ isOpen, onClose }) => {
               </select>
             </div>
             <div className="col-span-2">
-              <input type="text" placeholder='Machine Name' className="w-full border rounded p-2" />
+             <MachineSelect selectedLines={[selectedLine || 0]} onSelectMachine={setSelectedMachines} />
             </div>
           </div>
         );
