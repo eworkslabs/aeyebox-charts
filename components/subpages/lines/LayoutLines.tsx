@@ -1,12 +1,12 @@
-import HeaderSubPage from "@/components/headersubpage/HeaderSubPage";
 import TitleLines from "./TitleLines";
 import TableLines from "./TableLines";
+import Welcome from "@/components/overview/Welcome";
 
 export default function LayoutLines(){
     return(
         <section>
             <div>
-                <HeaderSubPage/>
+                <Welcome/>
             </div>
             <div className="bg-white">
                 <TitleLines />
