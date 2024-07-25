@@ -1,12 +1,12 @@
-import HeaderSubPage from "@/components/headersubpage/HeaderSubPage";
 import TitleLocations from "./TitleLocations";
 import TableLocations from "./TableLocations";
+import Welcome from "@/components/overview/Welcome";
 
 export default function LayoutLocations(){
     return(
         <section>
             <div>
-                <HeaderSubPage/>
+                <Welcome/>
             </div>
             <div className="bg-white">
                 <TitleLocations />
