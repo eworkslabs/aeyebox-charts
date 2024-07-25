@@ -27,19 +27,15 @@ const CompanySelect: React.FC<CompanySelectProps> = ({ onSelectCompany }) => {
   };
 
   return (
-    <div className="w-[371px] relative h-9 flex items-center">
-      <div className=" left-[0px] text-darkslategray inline-block w-[98.1px]">Company:</div>
-      <div className=" left-[97px] w-[274px] h-[35px]"></div>
-      <div className=" left-[97px] whitespace-pre-wrap inline-block w-[273px] h-[35px]">
-        <select className="left-[0px] bg-white w-[274px] h-[35px] border border-gray-300 rounded-md border-none" onChange={handleCompanyChange}>
-          <option>Select Your Company</option>
-          {companies.map((company) => (
-            <option key={company.id} value={company.id}>
-              {company.name}
-            </option>
-          ))}
-        </select>
-      </div>
+    <div>
+      <select className="w-full border rounded p-2">
+        <option value="">Select Company</option>
+        {companies.map((company)=> (
+          <option key={company.id} value={company.id}>
+            {company.name}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
