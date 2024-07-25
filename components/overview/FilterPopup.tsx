@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MachineSelect from '../apis/MachineSelect';
+import CompanySelect from '../apis/CompanySelect';
 
 interface RegisterPopupProps {
   isOpen: boolean;
@@ -10,6 +11,10 @@ const FiltersPopup: React.FC<RegisterPopupProps> = ({ isOpen, onClose }) => {
   const [activeTab, setActiveTab] = useState('Company');
   const [selectedLine, setSelectedLine] = useState<number | undefined>(undefined);
   const [selectedMachines, setSelectedMachines] = useState<{ value: number; label: string }[]>([]);
+  const [selectedCompany, setSelectedCompany] = useState<number | undefined>(undefined);
+  const [selectedLocation, setSelectedLocation] = useState<number | undefined>(undefined);
+  const [selectedPlant, setSelectedPlant] = useState<number | undefined>(undefined);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -17,11 +22,7 @@ const FiltersPopup: React.FC<RegisterPopupProps> = ({ isOpen, onClose }) => {
         return (
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <select className="w-full border rounded p-2">
-                <option value="">Select Company</option>
-                <option value="Company1">Company 1</option>
-                <option value="Company2">Company 2</option>
-              </select>
+              <CompanySelect onSelectCompany={setSelectedCompany} />
             </div>
             <div>
               <select className="w-full border rounded p-2">
