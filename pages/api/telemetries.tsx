@@ -1,10 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
 
-export default function handler(_req: NextApiRequest, res: NextApiResponse<[]>) {
-  const machineIds: string[] = _req?.query?.machines.split(",") || [];
+export default function handler(_req: NextApiRequest, res: NextApiResponse<any>) {
 
-  let machines: string[] = [];
+  let machineIds = [];
+
+  const machinesData = _req?.query?.machines;
+
+  if (typeof machinesData === 'string') {
+
+    machineIds = Array.isArray(machinesData) ? machinesData.split(",") : [];
+
+  }
+
+  let machines = [];
 
   if (machineIds.length) {
     try {
@@ -14,7 +23,7 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse<[]>) 
         let data = JSON.parse(file);
         machines = machines.concat(data);
       });
-    } catch (error) {}
+    } catch (error) { }
   }
 
   res.status(200).json(machines);

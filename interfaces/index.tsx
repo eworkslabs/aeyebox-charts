@@ -48,6 +48,8 @@ export type Kpis = {
 };
 
 export type Series = {
+  name: string;
+  data: number[];
   speed: number[];
   count: number[];
   stops: number[];

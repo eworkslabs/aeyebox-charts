@@ -12,7 +12,7 @@ function random(len: number = 23, min: number = 0, max: number = 100) {
 }
 
 export default function handler(_req: NextApiRequest, res: NextApiResponse<Series[]>) {
-  const series: Series[] = [
+  const series: any = [
     {
       name: "Sensor 1",
       data: random(),
