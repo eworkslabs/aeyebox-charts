@@ -31,20 +31,15 @@ const PlantSelect: React.FC<PlantSelectProps> = ({ selectedLocation, onSelectPla
   };
 
   return (
-    <div className="w-[364.9px] relative h-9 flex items-center">
-      <div className="left-[5px] text-darkslategray inline-block w-[98.1px]">Plant:</div>
-      <div className=" left-[90.9px] w-[274px] h-[35px]">
-      </div>
-      <div className=" left-[89.9px] whitespace-pre-wrap inline-block w-[273px] h-[35px]">
-        <select className=" left-[0px] bg-white w-[274px] h-[35px] border border-gray-300 rounded-md border-none" onChange={handlePlantChange} disabled={!selectedLocation}>
-          <option value="">Select Your Plant</option>
-          {plants.map((plant) => (
-            <option key={plant.id} value={plant.id}>
-              {plant.name}
-            </option>
-          ))}
-        </select>
-      </div>
+    <div>
+      <select className="w-full border rounded p-2">
+        <option value="">Select Plants</option>
+        {plants.map((plant) => (
+          <option key={plant.id} value={plant.id}>
+            {plant.name}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
