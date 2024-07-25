@@ -1,4 +1,4 @@
-import HeaderSubPage from "../../headersubpage/HeaderSubPage";
+import Welcome from "@/components/overview/Welcome";
 import TableCompany from "./Tables";
 import TitleCompany from "./TitleCompany";
 
@@ -6,7 +6,7 @@ export default function LayoutCompanies(){
     return(
         <section>
             <div>
-                <HeaderSubPage/>
+                <Welcome/>
             </div>
             <div className="bg-white">
                 <TitleCompany />
