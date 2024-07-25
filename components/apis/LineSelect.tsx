@@ -31,20 +31,15 @@ const LineSelect: React.FC<LineSelectProps> = ({ selectedPlant, onSelectLine }) 
   };
 
   return (
-    <div className="w-[372px]  h-9 flex items-center">
-      <div className=" left-[0px] text-darkslategray inline-block w-[98.1px]">Line:</div>
-      <div className=" left-[98px] w-[274px] h-[35px]">
-      </div>
-      <div className=" left-[98px] whitespace-pre-wrap inline-block w-[273px] h-[35px]">
-        <select className=" left-[0px] bg-white w-[274px] h-[35px] border border-gray-300 rounded-md border-none" onChange={handleLineChange} disabled={!selectedPlant}>
-          <option value="">Select Your Line</option>
-          {lines.map((line) => (
-            <option key={line.id} value={line.id}>
-              {line.name}
-            </option>
-          ))}
-        </select>
-      </div>
+    <div>
+      <select className="w-full border rounded p-2">
+        <option value="">Select Lines</option>
+        {lines.map((line) => (
+          <option key={line.id} value={line.id}>
+            {line.name}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
