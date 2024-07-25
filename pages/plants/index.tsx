@@ -8,7 +8,7 @@ export default function Plants(){
     <MenuLateral />
     <div className="flex flex-col w-full">
       <Header />
-      <main className="flex-1 p-4 ml-28">
+      <main className="flex-1 p-4 lg:ml-28">
         <LayoutPlants />
       </main>
     </div>
