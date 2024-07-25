@@ -4,6 +4,7 @@ import CompanySelect from '../apis/CompanySelect';
 import Locations from '@/pages/locations';
 import LocationSelect from '../apis/LocationSelect';
 import PlantSelect from '../apis/PlantSelect';
+import LineSelect from '../apis/LineSelect';
 
 interface RegisterPopupProps {
   isOpen: boolean;
@@ -34,11 +35,7 @@ const FiltersPopup: React.FC<RegisterPopupProps> = ({ isOpen, onClose }) => {
               <PlantSelect selectedLocation={selectedLocation} onSelectPlant={setSelectedPlant} />
             </div>
             <div>
-              <select className="w-full border rounded p-2">
-                <option value="">Select Lines</option>
-                <option value="Company1">Line 1</option>
-                <option value="Company2">Line 2</option>
-              </select>
+              <LineSelect selectedPlant={selectedPlant} onSelectLine={setSelectedLine} />
             </div>
             <div className="col-span-2">
               <MachineSelect selectedLines={[selectedLine || 0]} onSelectMachine={setSelectedMachines} />
