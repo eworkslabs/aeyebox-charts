@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import MachineSelect from '../apis/MachineSelect';
 import CompanySelect from '../apis/CompanySelect';
+import Locations from '@/pages/locations';
+import LocationSelect from '../apis/LocationSelect';
 
 interface RegisterPopupProps {
   isOpen: boolean;
@@ -25,11 +27,7 @@ const FiltersPopup: React.FC<RegisterPopupProps> = ({ isOpen, onClose }) => {
               <CompanySelect onSelectCompany={setSelectedCompany} />
             </div>
             <div>
-              <select className="w-full border rounded p-2">
-                <option value="">Select Locations</option>
-                <option value="Company1">Location 1</option>
-                <option value="Company2">Location 2</option>
-              </select>
+             <LocationSelect selectedCompany={selectedCompany} onSelectLocation={setSelectedLocation} />
             </div>
             <div>
               <select className="w-full border rounded p-2">
