@@ -28,7 +28,7 @@ const CompanySelect: React.FC<CompanySelectProps> = ({ onSelectCompany }) => {
 
   return (
     <div>
-      <select className="w-full border rounded p-2">
+      <select className="w-full border rounded p-2" onChange={handleCompanyChange}>
         <option value="">Select Company</option>
         {companies.map((company)=> (
           <option key={company.id} value={company.id}>

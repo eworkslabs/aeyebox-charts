@@ -32,7 +32,7 @@ const PlantSelect: React.FC<PlantSelectProps> = ({ selectedLocation, onSelectPla
 
   return (
     <div>
-      <select className="w-full border rounded p-2">
+      <select className="w-full border rounded p-2" onChange={handlePlantChange}>
         <option value="">Select Plants</option>
         {plants.map((plant) => (
           <option key={plant.id} value={plant.id}>

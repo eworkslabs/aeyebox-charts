@@ -32,7 +32,7 @@ const LocationSelect: React.FC<LocationSelectProps> = ({ selectedCompany, onSele
 
   return (
     <div>
-    <select className="w-full border rounded p-2">
+      <select className="w-full border rounded p-2" onChange={handleLocationChange}>
       <option value="">Select Locations</option>
       {locations.map((location)=> (
         <option key={location.id} value={location.id}>

@@ -8,7 +8,7 @@ export default async function handler(_req: NextApiRequest, res: NextApiResponse
   };
 
   try { 
-    const response = await axios.get(`${process.env.API_URL}/machines/custom?line_id=${_req.query.line_id}`, {
+    const response = await axios.get(`${process.env.API_URL}/machines/custom`, {
       headers: headers,
     });
     

@@ -32,7 +32,7 @@ const LineSelect: React.FC<LineSelectProps> = ({ selectedPlant, onSelectLine }) 
 
   return (
     <div>
-      <select className="w-full border rounded p-2">
+      <select className="w-full border rounded p-2" onChange={handleLineChange}>
         <option value="">Select Lines</option>
         {lines.map((line) => (
           <option key={line.id} value={line.id}>
