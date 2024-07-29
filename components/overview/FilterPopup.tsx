@@ -69,7 +69,7 @@ const FiltersPopup: React.FC<RegisterPopupProps> = ({ isOpen, onClose }) => {
           </ul>
         </div>
         {renderTabContent()}
-        <div className="flex justify-end mt-4">
+        <div className="flex justify-end mt-7">
           <button className="ease-in duration-300 bg-[#cfe600] text-[#07314a] py-2 px-10 rounded-xl">Save</button>
         </div>
       </div>
