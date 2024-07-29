@@ -3,6 +3,7 @@ import Charts from "./Charts";
 import ResultsKpi from "./ResultsKpi";
 import TitleOverview from "./TitleOverview";
 import Welcome from "./Welcome";
+import Telemetries from "../apis/Telemetries";
 
 export default function Overview(){
   const [selectedMachines] = useState<{ value: number; label: string }[]>([]);
@@ -14,8 +15,7 @@ export default function Overview(){
       </div>
       <div className="bg-white">
         <TitleOverview />
-        <ResultsKpi />
-        <Charts selectedMachines={selectedMachines} selectedDate={selectedDate}/>
+        <Telemetries selectedMachines={selectedMachines} selectedDate={selectedDate} />
       </div>
     </section>
   )
