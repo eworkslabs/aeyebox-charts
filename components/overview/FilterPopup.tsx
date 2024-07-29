@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import MachineSelect from '../apis/MachineSelect';
 import CompanySelect from '../apis/CompanySelect';
-import Locations from '@/pages/locations';
 import LocationSelect from '../apis/LocationSelect';
 import PlantSelect from '../apis/PlantSelect';
 import LineSelect from '../apis/LineSelect';
@@ -12,7 +11,7 @@ interface RegisterPopupProps {
 }
 
 const FiltersPopup: React.FC<RegisterPopupProps> = ({ isOpen, onClose }) => {
-  const [activeTab, setActiveTab] = useState('Company');
+  const [activeTab, setActiveTab] = useState('Machine');
   const [selectedLine, setSelectedLine] = useState<number | undefined>(undefined);
   const [selectedMachines, setSelectedMachines] = useState<{ value: number; label: string }[]>([]);
   const [selectedCompany, setSelectedCompany] = useState<number | undefined>(undefined);
