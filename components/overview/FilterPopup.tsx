@@ -20,30 +20,25 @@ const FiltersPopup: React.FC<RegisterPopupProps> = ({ isOpen, onClose }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const renderTabContent = () => {
-    switch (activeTab) {
-      case 'Machine':
-        return (
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <CompanySelect onSelectCompany={setSelectedCompany} />
-            </div>
-            <div>
-              <LocationSelect selectedCompany={selectedCompany} onSelectLocation={setSelectedLocation} />
-            </div>
-            <div>
-              <PlantSelect selectedLocation={selectedLocation} onSelectPlant={setSelectedPlant} />
-            </div>
-            <div>
-              <LineSelect selectedPlant={selectedPlant} onSelectLine={setSelectedLine} />
-            </div>
-            <div className="col-span-2">
-              <MachineSelect selectedLines={[selectedLine || 0]} onSelectMachine={setSelectedMachines} />
-            </div>
-          </div>
-        );
-      default:
-        return null;
-    }
+    return (
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <CompanySelect onSelectCompany={setSelectedCompany} />
+        </div>
+        <div>
+          <LocationSelect selectedCompany={selectedCompany} onSelectLocation={setSelectedLocation} />
+        </div>
+        <div>
+          <PlantSelect selectedLocation={selectedLocation} onSelectPlant={setSelectedPlant} />
+        </div>
+        <div>
+          <LineSelect selectedPlant={selectedPlant} onSelectLine={setSelectedLine} />
+        </div>
+        <div className="col-span-2">
+          <MachineSelect selectedLines={[selectedLine || 0]} onSelectMachine={setSelectedMachines} />
+        </div>
+      </div>
+    );
   };
 
   if (!isOpen) return null;
@@ -56,17 +51,7 @@ const FiltersPopup: React.FC<RegisterPopupProps> = ({ isOpen, onClose }) => {
           <button onClick={onClose} className="text-gray-500 hover:text-gray-700">&times;</button>
         </div>
         <div className="border-b mb-4 pb-2">
-          <ul className="flex space-x-4">
-            {['Machine'].map(tab => (
-              <li
-                key={tab}
-                className={`cursor-pointer ${activeTab === tab ? 'text-[#07314a] border-b-2 border-[#07314a]' : 'text-'}`}
-                onClick={() => setActiveTab(tab)}
-              >
-                {tab}
-              </li>
-            ))}
-          </ul>
+          <ul className="flex space-x-4"></ul>
         </div>
         {renderTabContent()}
         <div className="flex justify-end mt-20 md:mt-7">
