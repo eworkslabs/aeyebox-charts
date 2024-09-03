@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
+import LineData from "@/data/lines/111.json"
+
 interface LineSelectProps {
   selectedPlant: number | undefined;
   onSelectLine: (lineId: number) => void;
@@ -19,6 +21,7 @@ const LineSelect: React.FC<LineSelectProps> = ({ selectedPlant, onSelectLine }) 
     try {
       const response = await fetch(`/api/lines?plant_id=${plantId}`);
       const data = await response.json();
+      // const data = LineData
       setLines(data);
     } catch (error) {
       console.error("Error fetching Lines:", error);

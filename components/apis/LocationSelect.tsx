@@ -6,6 +6,8 @@ interface LocationSelectProps {
   onSelectLocation: (locationId: number) => void;
 }
 
+import LocationsData from "@/data/locations/4.json";
+
 const LocationSelect: React.FC<LocationSelectProps> = ({ selectedCompany, onSelectLocation }) => {
   const [locations, setLocations] = useState<any[]>([]);
 
@@ -19,6 +21,7 @@ const LocationSelect: React.FC<LocationSelectProps> = ({ selectedCompany, onSele
     try {
       const response = await fetch(`/api/locations?company_id=${companyId}`);
       const data = await response.json();
+      // const data = LocationsData
       setLocations(data);
     } catch (error) {
       console.error("Error fetching Locations:", error);

@@ -26,8 +26,11 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
         const date = (!selectedDate ? new Date() : new Date(selectedDate)).toISOString().split("T")[0];
 
         const machinesQuery = selectedMachines.map((machine) => machine.value).join(",");
+        console.log("machinesQuery", machinesQuery)
 
         const response = await fetch(`/api/telemetries?date=${date}&machines=${machinesQuery}`);
+        // const response02 = await fetch(`/api/telemetries`);
+        // console.log(response02.body)
 
         const data = await response.json();
 
@@ -71,11 +74,14 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
       }
     };
 
+    console.log("Telemetries");
+    console.log(selectedMachines);
+
     fetchTelemetries();
   }, [selectedMachines, selectedDate]);
 
   return (
-    <div className='pl-2 pr-2'>
+    <div className="pl-2 pr-2">
       <div className="overflow-hidden rounded-t-lg">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-[#07314a] text-white">
@@ -90,11 +96,21 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
           <tbody className="text-black pt-5">
             {kpis.map((item, index) => (
               <tr className="bg-silver" key={index}>
-                <td className="px-4 py-4 xs:text-xs text-base md:text-lg font-medium" style={{ backgroundColor: item.color }}>{item.name}</td>
-                <td className="px-4 py-4 xs:text-xs text-base md:text-lg font-medium" style={{ backgroundColor: item.color }}>{item.data.counts}</td>
-                <td className="px-4 py-4 xs:text-xs text-base md:text-lg font-medium" style={{ backgroundColor: item.color }}>{item.data.lows}</td>
-                <td className="px-4 py-4 xs:text-xs text-base md:text-lg font-medium" style={{ backgroundColor: item.color }}>{item.data.highs}</td>
-                <td className="px-4 py-4 xs:text-xs text-base md:text-lg font-medium" style={{ backgroundColor: item.color }}>{item.data.stops}</td>
+                <td className="px-4 py-4 xs:text-xs text-base md:text-lg font-medium" style={{ backgroundColor: item.color }}>
+                  {item.name}
+                </td>
+                <td className="px-4 py-4 xs:text-xs text-base md:text-lg font-medium" style={{ backgroundColor: item.color }}>
+                  {item.data.counts}
+                </td>
+                <td className="px-4 py-4 xs:text-xs text-base md:text-lg font-medium" style={{ backgroundColor: item.color }}>
+                  {item.data.lows}
+                </td>
+                <td className="px-4 py-4 xs:text-xs text-base md:text-lg font-medium" style={{ backgroundColor: item.color }}>
+                  {item.data.highs}
+                </td>
+                <td className="px-4 py-4 xs:text-xs text-base md:text-lg font-medium" style={{ backgroundColor: item.color }}>
+                  {item.data.stops}
+                </td>
               </tr>
             ))}
           </tbody>

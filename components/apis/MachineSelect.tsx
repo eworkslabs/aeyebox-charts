@@ -1,11 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
+import MachineData from "@/data/machines/1111.json"
 
 interface Machine {
   id: number;
   name: string;
 }
+
 
 interface MachineSelectProps {
   selectedLines: number[];
@@ -22,6 +24,7 @@ const MachineSelect: React.FC<MachineSelectProps> = ({ selectedLines, onSelectMa
           const lineIds = selectedLines.join(",");
           const response = await fetch(`/api/machines?line_id=${lineIds}`);
           const data: Machine[] = await response.json();
+          // const data = MachineData
           const machineOptions = data.map((machine) => ({
             value: machine.id,
             label: machine.name,

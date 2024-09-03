@@ -4,6 +4,8 @@ interface CompanySelectProps {
   onSelectCompany: (companyId: number) => void;
 }
 
+import CompaniesData from "@/data/companies/companies.json";
+
 const CompanySelect: React.FC<CompanySelectProps> = ({ onSelectCompany }) => {
   const [companies, setCompanies] = useState<any[]>([]);
 
@@ -13,8 +15,10 @@ const CompanySelect: React.FC<CompanySelectProps> = ({ onSelectCompany }) => {
 
   const fetchCompanies = async () => {
     try {
+      console.log(CompaniesData)
       const response = await fetch(`/api/companies`);
-      const data = await response.json();
+      const data = CompaniesData || await response.json();
+      // const data = CompaniesData
       setCompanies(data);
     } catch (error) {
       console.error("Error fetching Companies:", error);

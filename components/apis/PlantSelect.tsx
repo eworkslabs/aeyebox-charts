@@ -6,6 +6,8 @@ interface PlantSelectProps {
   onSelectPlant: (plantId: number) => void;
 }
 
+import PlantData from "@/data/plants/11.json"
+
 const PlantSelect: React.FC<PlantSelectProps> = ({ selectedLocation, onSelectPlant }) => {
   const [plants, setPlants] = useState<any[]>([]);
 
@@ -19,6 +21,7 @@ const PlantSelect: React.FC<PlantSelectProps> = ({ selectedLocation, onSelectPla
     try {
       const response = await fetch(`/api/plants?location_id=${locationId}`);
       const data = await response.json();
+      // const data = PlantData
       setPlants(data);
     } catch (error) {
       console.error("Error fetching Plants:", error);

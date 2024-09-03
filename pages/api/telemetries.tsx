@@ -22,6 +22,7 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse<any>)
         let file = fs.readFileSync(__dirname + "/../../../../data/telemetries/" + id + ".json", "utf8");
         let data = JSON.parse(file);
         machines = machines.concat(data);
+        console.log("api", machines)
       });
     } catch (error) { }
   }
