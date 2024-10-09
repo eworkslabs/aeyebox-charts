@@ -16,27 +16,27 @@ export default function MenuLateral() {
             </div>
             <div className="mt-10 flex flex-col gap-11 text-2xl text-[#07314a]">
                 <div className="group relative">
-                    <Link href="/"><BiHomeAlt /></Link>
+                    <Link href="/app"><BiHomeAlt /></Link>
                     <div className={`w-1 h-8 rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2 transition-colors ${isActive('/') ? 'bg-[#07314a]' : 'group-hover:bg-[#07314a]'}`}></div>
                 </div>
                 <div className="group relative">
-                    <Link href="/companies"><BiBuildings /></Link>
+                    <Link href="/app/companies"><BiBuildings /></Link>
                     <div className={`w-1 h-8 rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2 transition-colors ${isActive('/companies') ? 'bg-[#07314a]' : 'group-hover:bg-[#07314a]'}`}></div>
                 </div>
                 <div className="group relative">
-                    <Link href="/locations"><MdOutlinePlace /></Link>
+                    <Link href="/app/locations"><MdOutlinePlace /></Link>
                     <div className={`w-1 h-8 rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2 transition-colors ${isActive('/locations') ? 'bg-[#07314a]' : 'group-hover:bg-[#07314a]'}`}></div>
                 </div>
                 <div className="group relative">
-                    <Link href="/plants"><MdOutlineFactory /></Link>
+                    <Link href="/app/plants"><MdOutlineFactory /></Link>
                     <div className={`w-1 h-8 rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2 transition-colors ${isActive('/plants') ? 'bg-[#07314a]' : 'group-hover:bg-[#07314a]'}`}></div>
                 </div>
                 <div className="group relative">
-                    <Link href="/lines"><MdConveyorBelt /></Link>
+                    <Link href="/app/lines"><MdConveyorBelt /></Link>
                     <div className={`w-1 h-8 rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2 transition-colors ${isActive('/lines') ? 'bg-[#07314a]' : 'group-hover:bg-[#07314a]'}`}></div>
                 </div>
                 <div className="group relative">
-                    <Link href="/machines"><BiWrench /></Link>
+                    <Link href="/app/machines"><BiWrench /></Link>
                     <div className={`w-1 h-8 rounded-lg absolute -left-7 top-1/2 transform -translate-y-1/2 transition-colors ${isActive('/machines') ? 'bg-[#07314a]' : 'group-hover:bg-[#07314a]'}`}></div>
                 </div>
             </div>
