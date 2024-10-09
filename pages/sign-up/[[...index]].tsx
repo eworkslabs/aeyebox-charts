@@ -8,7 +8,7 @@ export default function SignUpPage() {
         fallbackRedirectUrl="/app"
         appearance={{
           elements: {
-            formButtonPrimary: '',
+            formButtonPrimary: 'bg-[#cfe600] text-[#07314a] border-none',
           },
         }} 
       />
