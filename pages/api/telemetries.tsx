@@ -6,11 +6,11 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse<any>)
   let machineIds = [];
 
   const machinesData = _req?.query?.machines;
+  console.log("Query Machines:", _req.query.machines);
 
   if (typeof machinesData === 'string') {
-
-    machineIds = Array.isArray(machinesData) ? machinesData.split(",") : [];
-
+    // machineIds = Array.isArray(machinesData) ? machinesData.split(",") : [];
+    machineIds = machinesData.split(",");
   }
 
   let machines = [];
@@ -22,7 +22,6 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse<any>)
         let file = fs.readFileSync(__dirname + "/../../../../data/telemetries/" + id + ".json", "utf8");
         let data = JSON.parse(file);
         machines = machines.concat(data);
-        console.log("api", machines)
       });
     } catch (error) { }
   }

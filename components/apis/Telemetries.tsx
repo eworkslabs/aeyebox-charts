@@ -1,4 +1,3 @@
-"use client";
 import React, { Fragment, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import DatePicker from "@/components/calendar/DatePicker";
@@ -9,7 +8,7 @@ const Chart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }[]; selectedDate: any }> = ({ selectedMachines, selectedDate }) => {
+const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }[], selectedDate: any }> = ({ selectedMachines, selectedDate }) => {
   const [loading, setLoading] = useState(true);
   const [countsSeries, setCountSeries] = useState<any[]>([]);
   const [speedsSeries, setSpeedSeries] = useState<any[]>([]);
@@ -23,15 +22,12 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
     const fetchTelemetries = async () => {
       setLoading(true);
       try {
+
         const date = (!selectedDate ? new Date() : new Date(selectedDate)).toISOString().split("T")[0];
 
         const machinesQuery = selectedMachines.map((machine) => machine.value).join(",");
-        console.log("machinesQuery", machinesQuery)
 
         const response = await fetch(`/api/telemetries?date=${date}&machines=${machinesQuery}`);
-        // const response02 = await fetch(`/api/telemetries`);
-        // console.log(response02.body)
-
         const data = await response.json();
 
         const counts = data.map((item: any) => ({
@@ -58,12 +54,9 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
           data: item.kpis,
         }));
 
-        // Eu criei 3 variaveis de opcoes para o componente de grafico;
-        // Para receber os dados da API fazendo um merge com as colores
-
         const colors = data.map((item: any) => item.color);
         setNCountOptions({ ...countOptions, ...{ colors } });
-        setNStopOptions({ ...stopsOptions, ...{ colors } });
+        setNStopOptions({ ...stopsOptions, ... { colors } });
         setNSpeedOptions({ ...speedOptions, ...{ colors } });
 
         setKpis(kpisData);
@@ -73,9 +66,6 @@ const Telemetries: React.FC<{ selectedMachines: { value: number; label: string }
         setLoading(false);
       }
     };
-
-    console.log("Telemetries");
-    console.log(selectedMachines);
 
     fetchTelemetries();
   }, [selectedMachines, selectedDate]);

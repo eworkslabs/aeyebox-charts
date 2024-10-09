@@ -1,17 +1,12 @@
-import HeaderSubPage from "@/components/headersubpage/HeaderSubPage";
-import TitlePlants from "./TitlePlants";
+import HeaderPlants from "./HeaderPlants";
 import TablePlants from "./TablePlants";
-import Welcome from "@/components/overview/Welcome";
 
 
 export default function LayoutPlants(){
     return(
         <section>
-            <div>
-                <Welcome/>
-            </div>
             <div className="bg-white">
-                <TitlePlants />
+                <HeaderPlants />
                 <TablePlants />
             </div>
         </section>

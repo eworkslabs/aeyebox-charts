@@ -22,20 +22,14 @@ export default function Overview() {
     setIsPopupOpen(!isPopupOpen);
   };
 
-
-
   const handlerMachine = (data01: any) => {
     const { selectedMachines: oo, ...data } = data01;
-    console.log(oo);
     const pp: { value: any; label: string }[] = [];
     Object.entries(data).map(([k, v]) => {
       pp.push({ value: v, label: k });
     });
-    // console.log('handleMachine: ',pp );
-    console.log("teste ", selectedMachines.map((machine) => machine.value).join(","));
     setSelectedMachines(oo as any);
     setIsTelemetric(true)
-    
   };
 
   return (

@@ -1,17 +1,12 @@
-import HeaderSubPage from "@/components/headersubpage/HeaderSubPage";
-import TitleMachines from "./TitleMachines";
+import HeaderMachines from "./HeaderMachines";
 import TableMachines from "./TableMachines";
-import Welcome from "@/components/overview/Welcome";
 
 
 export default function LayoutMachines(){
     return(
         <section>
-            <div>
-                <Welcome/>
-            </div>
             <div className="bg-white">
-                <TitleMachines />
+                <HeaderMachines />
                 <TableMachines />
             </div>
         </section>

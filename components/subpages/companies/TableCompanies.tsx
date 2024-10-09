@@ -10,7 +10,7 @@ export default function TableCompanies() {
 
   const getEntities = async () => {
     try {
-      const response = await fetch('/api/lines')
+      const response = await fetch('/api/companies')
       const data = await response.json();
       setEntities(data);
 
@@ -21,7 +21,7 @@ export default function TableCompanies() {
 
   const updateEntity = async (updatedData) => {
     try {
-      await axios.put(`/api/lines/${updatedData.id}`, updatedData)
+      await axios.put(`/api/companies/${updatedData.id}`, updatedData)
       location.reload()
 
     } catch (error) {
@@ -31,7 +31,7 @@ export default function TableCompanies() {
 
   const deleteEntity = async (deletedData) => {
     try {
-      await axios.delete(`/api/lines/${deletedData.id}`)
+      await axios.delete(`/api/companies/${deletedData.id}`)
       location.reload()
 
     } catch (error) {
@@ -47,8 +47,8 @@ export default function TableCompanies() {
             <tr>
               <th className="w-1/12 px-2 py-3 text-left xs:text-[13px] text-base md:text-lg font-medium">Id</th>
               <th className="w-3/12 px-2 py-3 text-left xs:text-[13px] text-base md:text-lg font-medium">Name</th>
-              <th className="w-3/12 px-2 py-3 text-left xs:text-[13px] text-base md:text-lg font-medium">Plant ID</th>
-              <th className="w-3/12 px-2 py-3 text-left xs:text-[13px] text-base md:text-lg font-medium"></th>
+              <th className="w-3/12 px-2 py-3 text-left xs:text-[13px] text-base md:text-lg font-medium">State</th>
+              <th className="w-3/12 px-2 py-3 text-left xs:text-[13px] text-base md:text-lg font-medium">Factory</th>
               <th className="w-2/12 px-2 py-3 text-left xs:text-[13px] text-base md:text-lg font-medium">Actions</th>
             </tr>
           </thead>
@@ -61,11 +61,7 @@ export default function TableCompanies() {
                     entity.name = e.target.value
                   }} />
                 </td>
-                <td className="px-2 py-4 xs:text-[13px] text-base md:text-lg font-medium">
-                  <input type="number" placeholder={entity.plant_id}  onChange={(e) => {
-                    entity.plant_id = e.target.value
-                  }} />
-                </td>
+                <td className="px-2 py-4 xs:text-[13px] text-base md:text-lg font-medium"></td>
                 <td className="px-2 py-4 xs:text-[13px] text-base md:text-lg font-medium"></td>
                 <td className="px-2 py-4 xs:text-[13px] text-base md:text-lg font-medium">
                   <button onClick={() => updateEntity(entity)}>

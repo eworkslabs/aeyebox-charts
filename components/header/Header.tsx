@@ -7,6 +7,8 @@ import { FiX } from "react-icons/fi";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MenuLateralMobile from "../lateralmenu/LateralMenuMobile";
+import { User } from "@clerk/nextjs/server";
+import { UserButton } from "@clerk/nextjs";
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -65,9 +67,9 @@ export default function Header() {
                     <input type="text" placeholder="Type or say your prompt." className="outline-none w-full text-gray-600 pl-2 md:pl-5 placeholder:text-black placeholder:text-[12px] md:placeholder:text-[14px] xs:placeholder:text-[9px]" />
                     <Image src="/images/fi_7406540.png" alt="lupa" height={19} width={19} />
                 </div>
-                <div className="flex gap-5">
+                <div className="flex items-center gap-5">
                     <FiSun className="text-gray-400 text-lg" />
-                    <FiLogOut className="text-red-500 text-lg" />
+                    <UserButton />
                 </div>
             </div>
             <motion.div
