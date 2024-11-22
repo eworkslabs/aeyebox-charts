@@ -1,8 +1,9 @@
 import Header from "@/components/header/Header";
 import MenuLateral from "@/components/lateralmenu/LateralMenu";
 import Overview from "@/components/overview/Overview";
+import withAuth from "@/lib/withAuth";
 
-export default function HomeApp() {
+function HomeApp() {
   return (
     <div className="flex h-screen">
       <MenuLateral />
@@ -15,3 +16,5 @@ export default function HomeApp() {
     </div>
   );
 }
+
+export default withAuth(HomeApp)
