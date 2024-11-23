@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Input from '@/components/global/Input';
+import Button from '@/components/global/Button';
 
 export default function SignUp() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [givenName, setGivenName] = useState('');
+  const [familyName, setFamilyName] = useState('');
   const [error, setError] = useState('');
-  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,42 +19,63 @@ export default function SignUp() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username: email, password }),
+        body: JSON.stringify({ username, password, givenName, familyName }),
       });
 
+      console.log(JSON.stringify({ username, password, givenName, familyName }));
       if (!response.ok) {
         throw new Error('Registration failed');
       }
 
-      const data = await response.json();
-      console.log('User registered:', data);
-      router.push('/sign-in');
+      window.location.href = '/app';
     } catch (err) {
       setError(err.message || 'Unknown error');
     }
   };
 
   return (
-    <div>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          required
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          required
-        />
-        <button type="submit">Sign Up</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-    </div>
+      <section className='flex flex-col w-100 h-screen justify-center items-center gap-8'>
+        <h1 className='text-xl font-semibold'>AEYEBOX</h1>
+        <form onSubmit={handleSubmit} className='flex flex-col p-8 gap-4 rounded-xl bg-[#DFECF5]'>
+          <Input 
+            inputName='email' 
+            inputType='email' 
+            labelName='Email' 
+            inputValue={username} 
+            onChange={(e) => setUsername(e.target.value)} 
+            required={true} 
+          />
+          <Input 
+            inputName='password' 
+            inputType='password' 
+            labelName='Password' 
+            inputValue={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+            required={true} 
+          />
+          <Input 
+            inputName='givenName' 
+            inputType='text' 
+            labelName='Given Name' 
+            inputValue={givenName} 
+            onChange={(e) => setGivenName(e.target.value)} 
+            required={true} 
+          />
+          <Input 
+            inputName='familyName' 
+            inputType='text' 
+            labelName='Family Name' 
+            inputValue={familyName} 
+            onChange={(e) => setFamilyName(e.target.value)} 
+            required={true} 
+          />
+
+          <Button text={"Sign Up"} classDiv={"mt-8"} />
+          <div className='flex w-100 justify-center'>
+            <a href="sign-in" className="text-sm text-[#07314a]">Already an user? Click here.</a>
+          </div>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+        </form>
+      </section>
   );
 }

@@ -1,8 +1,9 @@
 const AWS = require('aws-sdk');
+import { serialize } from 'cookie';
 
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_COGNITO_CLIENT_SECRET,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: process.env.AWS_REGION,
 });
 
@@ -30,34 +31,58 @@ export default async function handler(req, res) {
     } catch (authError) {
       if (authError.code === 'NotAuthorizedException') {
         // O usuário não existe, então vamos criar um novo
-        const createUserParams = {
-          UserPoolId: process.env.AWS_COGNITO_USER_POOL_ID,  // ID do User Pool
+        const userParams = {
+          ClientId: process.env.AWS_COGNITO_CLIENT_ID,  // ID do App Client
           Username: username,
-          TemporaryPassword: password,  // Senha temporária
-          MessageAction: 'SUPPRESS',  // Desabilita o envio automático de e-mail
+          Password: password,
           UserAttributes: [
-            {
-              Name: 'email',
-              Value: username,  // Pode ser o e-mail do usuário
-            },
-            {
-              Name: 'given_name', // Atributo exigido
-              Value: givenName,
-            },
-            {
-              Name: 'family_name', // Atributo exigido
-              Value: familyName,
-            },
+            { Name: 'email', Value: username },
+            { Name: 'given_name', Value: givenName },
+            { Name: 'family_name', Value: familyName },
           ],
         };
 
-        // Cria o usuário
         try {
-          const createUserResponse = await cognito.adminCreateUser(createUserParams).promise();
-          res.status(200).json({
-            message: 'User created successfully',
-            user: createUserResponse,
-          });
+          // 1. Cria o usuário
+          await cognito.signUp(userParams).promise();
+
+          // 2. Confirma o usuário automaticamente
+          const confirmUserParams = {
+            UserPoolId: process.env.AWS_COGNITO_USER_POOL_ID,
+            Username: username,
+          };
+          await cognito.adminConfirmSignUp(confirmUserParams).promise();
+        
+          // 3. Realiza o login automático após o cadastro
+          const response = await cognito.initiateAuth({
+            AuthFlow: 'USER_PASSWORD_AUTH',
+            ClientId: process.env.AWS_COGNITO_CLIENT_ID,
+            AuthParameters: {
+              USERNAME: username,
+              PASSWORD: password,
+            },
+          }).promise();
+        
+          const { AuthenticationResult } = response;
+          const accessToken = AuthenticationResult?.AccessToken;
+          
+          if (accessToken) {
+            // Definir o cookie HTTP-only
+            const cookie = serialize('authToken', accessToken, {
+              httpOnly: true,
+              secure: process.env.NODE_ENV === 'production', // use 'secure' em produção
+              maxAge: 60 * 60 * 24 * 7, // 1 semana
+              path: '/', // disponível em todas as rotas
+            });
+
+            // Enviar o cookie com a resposta
+            res.setHeader('Set-Cookie', cookie);
+
+            // Responder com sucesso
+            res.status(200).json({ message: 'Authenticated successfully', response });
+
+            router.push('/app'); // Redireciona para página após login
+          }
         } catch (createUserError) {
           res.status(400).json({ message: 'Error creating user', error: createUserError.message });
         }

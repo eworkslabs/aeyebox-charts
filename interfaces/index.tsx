@@ -54,3 +54,9 @@ export type Series = {
   count: number[];
   stops: number[];
 };
+
+export type ButtonProps = {
+  text: String;
+  onClick?: () => void;
+  classDiv?: String;
+}

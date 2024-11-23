@@ -1,7 +1,6 @@
 import Header from "@/components/header/Header";
 import MenuLateral from "@/components/lateralmenu/LateralMenu";
 import Overview from "@/components/overview/Overview";
-import withAuth from "@/lib/withAuth";
 
 function HomeApp() {
   return (
@@ -17,4 +16,4 @@ function HomeApp() {
   );
 }
 
-export default withAuth(HomeApp)
+export default HomeApp

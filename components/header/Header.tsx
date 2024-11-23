@@ -7,8 +7,6 @@ import { FiX } from "react-icons/fi";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MenuLateralMobile from "../lateralmenu/LateralMenuMobile";
-import { User } from "@clerk/nextjs/server";
-import { UserButton } from "@clerk/nextjs";
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -69,7 +67,7 @@ export default function Header() {
                 </div>
                 <div className="flex items-center gap-5">
                     <FiSun className="text-gray-400 text-lg" />
-                    <UserButton />
+                    {/* <UserButton /> */}
                 </div>
             </div>
             <motion.div

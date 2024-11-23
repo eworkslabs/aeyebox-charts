@@ -1,6 +1,7 @@
-// pages/sign-in.js
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Button from '@/components/global/Button';
+import Input from '@/components/global/Input';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ export default function SignIn() {
     e.preventDefault();
 
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch('/api/auth/sign-in', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -24,23 +25,24 @@ export default function SignIn() {
         throw new Error('Authentication failed');
       }
 
-      const data = await response.json();
-      console.log('Authenticated:', data);
-      router.push('/app');
+      window.location.href = '/app';
     } catch (err) {
       setError(err.message || 'Unknown error');
     }
   };
 
   return (
-    <div>
-      <h1>Sign In</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
-        <button type="submit">Sign In</button>
+    <section className='flex flex-col w-100 h-screen justify-center items-center gap-8'>
+      <h1 className='text-xl font-semibold'>AEYEBOX</h1>
+      <form onSubmit={handleSubmit} className='flex flex-col p-8 gap-4 rounded-xl bg-[#DFECF5]'>
+        <Input inputName='email' inputType='email' labelName='Email' inputValue={email} onChange={(e) => setEmail(e.target.value)} required={true} />
+        <Input inputName='password' inputType='password' labelName='Password' inputValue={password} onChange={(e) => setPassword(e.target.value)} required={true} />
+        <Button text={"Sign In"} classDiv={"mt-8"} />
+        <div className='flex w-100 justify-center'>
+          <a href="sign-up" className="text-sm text-[#07314a]">New user? Click here.</a>
+        </div>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-    </div>
+    </section>
   );
 }
