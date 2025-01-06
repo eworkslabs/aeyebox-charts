@@ -37,7 +37,8 @@ const LineSelect: React.FC<LineSelectProps> = ({ selectedPlant, onSelectLine }) 
     <div>
       <select className="w-full border rounded p-2" onChange={handleLineChange}>
         <option value="">Select Lines</option>
-        {lines.map((line) => (
+        //Change for "lines" when API returns
+        {LineData.map((line) => (
           <option key={line.id} value={line.id}>
             {line.name}
           </option>

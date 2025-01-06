@@ -25,7 +25,9 @@ const MachineSelect: React.FC<MachineSelectProps> = ({ selectedLines, onSelectMa
           const response = await fetch(`/api/machines?line_id=${lineIds}`);
           const data: Machine[] = await response.json();
           // const data = MachineData
-          const machineOptions = data.map((machine) => ({
+          //Change for "data.map" when API returns
+
+          const machineOptions = MachineData.map((machine) => ({
             value: machine.id,
             label: machine.name,
           }));
