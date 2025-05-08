@@ -48,7 +48,15 @@ export type Kpis = {
 };
 
 export type Series = {
+  name: string;
+  data: number[];
   speed: number[];
   count: number[];
   stops: number[];
 };
+
+export type ButtonProps = {
+  text: String;
+  onClick?: () => void;
+  classDiv?: String;
+}

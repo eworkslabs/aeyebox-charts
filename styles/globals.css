@@ -37,3 +37,7 @@ body {
 .group:hover .hover-effect {
   opacity: 1;
 }
+
+.cl-formButtonPrimary {
+  box-shadow: none !important;
+}

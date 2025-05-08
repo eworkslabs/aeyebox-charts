@@ -1,15 +1,11 @@
-import HeaderSubPage from "@/components/headersubpage/HeaderSubPage";
-import TitleLocations from "./TitleLocations";
+import HeaderLocations from "./HeaderLocations";
 import TableLocations from "./TableLocations";
 
 export default function LayoutLocations(){
     return(
         <section>
-            <div>
-                <HeaderSubPage/>
-            </div>
             <div className="bg-white">
-                <TitleLocations />
+                <HeaderLocations />
                 <TableLocations />
             </div>
         </section>

@@ -7,7 +7,7 @@ export default async function handler(_req: NextApiRequest, res: NextApiResponse
     Authorization: `Bearer ${process.env.API_TOKEN}`,
   };
 
-  const response = await axios.get(`${process.env.API_URL}/production_lines/custom?plant_id=${_req.query.plant_id}`, {
+  const response = await axios.get(`${process.env.API_URL}/production_lines/custom`, {
     headers: headers,
   });
 

@@ -1,16 +1,12 @@
-import HeaderSubPage from "../../headersubpage/HeaderSubPage";
-import TableCompany from "./Tables";
-import TitleCompany from "./TitleCompany";
+import TableCompanies from "./TableCompanies";
+import HeaderCompanies from "./HeaderCompanies";
 
 export default function LayoutCompanies(){
     return(
         <section>
-            <div>
-                <HeaderSubPage/>
-            </div>
             <div className="bg-white">
-                <TitleCompany />
-                <TableCompany />
+                <HeaderCompanies />
+                <TableCompanies />
             </div>
         </section>
     )

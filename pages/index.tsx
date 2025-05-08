@@ -1,17 +1,10 @@
-import Header from "@/components/header/Header";
-import MenuLateral from "@/components/lateralmenu/LateralMenu";
-import Overview from "@/components/overview/Overview";
-
 export default function Home() {
   return (
-    <div className="flex h-screen">
-      <MenuLateral />
-      <div className="flex flex-col w-full">
-        <Header />
-        <main className="flex-1 p-4 ml-28">
-          <Overview />
-        </main>
-      </div>
+    <div className="flex flex-col justify-center items-center text-center h-screen">
+      <h1 className="p-5 text-[#292929] text-[24px] font-semibold">Web</h1>
+      <a href="/app" className="p-2 bg-[#cfe600] border-[#cfe600] text-[#07314a] justify-center items-center rounded-xl flex">
+        Application Area
+      </a>
     </div>
   );
 }

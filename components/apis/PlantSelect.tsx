@@ -6,6 +6,8 @@ interface PlantSelectProps {
   onSelectPlant: (plantId: number) => void;
 }
 
+import PlantData from "@/data/plants/11.json"
+
 const PlantSelect: React.FC<PlantSelectProps> = ({ selectedLocation, onSelectPlant }) => {
   const [plants, setPlants] = useState<any[]>([]);
 
@@ -19,6 +21,7 @@ const PlantSelect: React.FC<PlantSelectProps> = ({ selectedLocation, onSelectPla
     try {
       const response = await fetch(`/api/plants?location_id=${locationId}`);
       const data = await response.json();
+      // const data = PlantData
       setPlants(data);
     } catch (error) {
       console.error("Error fetching Plants:", error);
@@ -31,20 +34,15 @@ const PlantSelect: React.FC<PlantSelectProps> = ({ selectedLocation, onSelectPla
   };
 
   return (
-    <div className="w-[364.9px] relative h-9 flex items-center">
-      <div className="left-[5px] text-darkslategray inline-block w-[98.1px]">Plant:</div>
-      <div className=" left-[90.9px] w-[274px] h-[35px]">
-      </div>
-      <div className=" left-[89.9px] whitespace-pre-wrap inline-block w-[273px] h-[35px]">
-        <select className=" left-[0px] bg-white w-[274px] h-[35px] border border-gray-300 rounded-md border-none" onChange={handlePlantChange} disabled={!selectedLocation}>
-          <option value="">Select Your Plant</option>
-          {plants.map((plant) => (
-            <option key={plant.id} value={plant.id}>
-              {plant.name}
-            </option>
-          ))}
-        </select>
-      </div>
+    <div>
+      <select className="w-full border rounded p-2" onChange={handlePlantChange}>
+        <option value="">Select Plants</option>
+        {plants.map((plant) => (
+          <option key={plant.id} value={plant.id}>
+            {plant.name}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
